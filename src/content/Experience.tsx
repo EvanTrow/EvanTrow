@@ -2,7 +2,7 @@ import * as React from 'react';
 import moment from 'moment';
 import { isMobile } from 'react-device-detect';
 
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
@@ -17,11 +17,12 @@ import PlaceIcon from '@mui/icons-material/Place';
 import PublicIcon from '@mui/icons-material/Public';
 import { CrestwoodIcon, PennAirIcon, SLTechnologyIcon, DenverWholesaleFoodsIcon, CocalicoIcon } from '../components/SvgIcons';
 import Tooltip from '@mui/material/Tooltip';
+import PositionDialog from './PositionDialog';
 
 const prettyDate = require('pretty-date-duration');
 
 const StyledTimelineDot = styled(TimelineDot)(({ theme }) => ({
-	backgroundColor: theme.palette.primary.main,
+	backgroundColor: theme.palette.mode == 'light' ? theme.palette.primary.main : theme.palette.primary.dark,
 	boxShadow: '0',
 	'&::after': {
 		position: 'absolute',
@@ -30,7 +31,7 @@ const StyledTimelineDot = styled(TimelineDot)(({ theme }) => ({
 		height: 32,
 		borderRadius: '50%',
 		animation: 'ripple 1.2s infinite ease-in-out',
-		border: `2px solid ${theme.palette.primary.main}`,
+		border: `2px solid ${theme.palette.mode == 'light' ? theme.palette.primary.main : theme.palette.primary.dark}`,
 		content: '""',
 	},
 	'@keyframes ripple': {
@@ -59,6 +60,7 @@ const experience = [
 				title: 'Junior Acumatica Developer',
 				start: '09/26/2022',
 				end: null,
+				details: ['Coffee', 'Tea', 'Milk'],
 			},
 		],
 	},
@@ -75,11 +77,13 @@ const experience = [
 				title: 'Systems Engineer',
 				start: '07/15/2022',
 				end: '09/12/2022',
+				details: undefined,
 			},
 			{
 				title: 'Systems Analyst',
 				start: '07/09/2020',
 				end: '07/15/2022',
+				details: undefined,
 			},
 		],
 	},
@@ -96,6 +100,7 @@ const experience = [
 				title: 'Systems Engineer',
 				start: '04/08/2019',
 				end: '07/09/2020',
+				details: undefined,
 			},
 		],
 	},
@@ -112,6 +117,7 @@ const experience = [
 				title: 'System Administrator',
 				start: '05/25/2018',
 				end: '04/08/2019',
+				details: undefined,
 			},
 		],
 	},
@@ -128,22 +134,26 @@ const experience = [
 				title: 'Technology Support',
 				start: '08/22/2018',
 				end: '04/08/2019',
+				details: undefined,
 			},
 			{
 				title: 'IT Assistant',
 				start: '06/01/2016',
 				end: '08/22/2018',
+				details: undefined,
 			},
 		],
 	},
 ];
 
 export default function Experience() {
+	const theme = useTheme();
+
 	return (
 		<Box
 			sx={{
 				width: '100%',
-				padding: isMobile ? 1 : 6,
+				paddingTop: isMobile ? 1 : 6,
 			}}
 		>
 			<Container>
@@ -184,11 +194,11 @@ export default function Experience() {
 											<exp.logo sx={{ height: 32, width: 32 }} />
 										</StyledTimelineDot>
 									) : (
-										<TimelineDot sx={{ backgroundColor: '#f1f1f1' }}>
+										<TimelineDot sx={{ backgroundColor: theme.palette.mode == 'light' ? '#f1f1f1' : '#bdbdbd' }}>
 											<exp.logo sx={{ height: 32, width: 32 }} />
 										</TimelineDot>
 									)}
-									<TimelineConnector sx={exp.end == null ? { bgcolor: 'primary.main' } : {}} />
+									<TimelineConnector sx={exp.end == null ? { bgcolor: theme.palette.mode == 'light' ? 'primary.main' : 'primary.dark' } : {}} />
 								</TimelineSeparator>
 								<TimelineContent>
 									<Typography variant='h6'>
@@ -199,7 +209,6 @@ export default function Experience() {
 											}}
 											href={exp.site}
 											target='_blank'
-											noWrap
 										>
 											{exp.company}
 										</Link>
@@ -241,7 +250,10 @@ export default function Experience() {
 										{expIndex + 1 === experience.length && posIndex + 1 === exp.positions.length ? '' : <TimelineConnector />}
 									</TimelineSeparator>
 									<TimelineContent>
-										<Typography variant='body1'>{pos.title}</Typography>
+										{/* <Typography variant='body1'>{pos.title}</Typography> */}
+
+										<PositionDialog company={exp.company} position={pos.title as string} content={pos.details} />
+
 										<Stack direction='row' spacing={1}>
 											<Tooltip title={prettyDate(pos.start, pos.end)}>
 												<Chip label={getPrettyDuration(pos.start, pos.end)} size='small' />

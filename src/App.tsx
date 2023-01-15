@@ -3,14 +3,13 @@ import { useCookies } from 'react-cookie';
 import { SnackbarProvider } from 'notistack';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import { CssBaseline, IconButton, Tooltip } from '@mui/material';
 
 import Header from './content/Header';
 import Experience from './content/Experience';
-
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import { IconButton } from '@mui/material';
+import Education from './content/Education';
 
 function App() {
 	const [cookies, setCookie] = useCookies(['darkmode']);
@@ -43,19 +42,22 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 
-			<IconButton
-				sx={{ position: 'absolute', top: 8, right: 8 }}
-				size='small'
-				onClick={() => {
-					setDarkmode(!darkMode);
-					setCookie('darkmode', !darkMode);
-				}}
-			>
-				{darkMode ? <LightModeIcon /> : <DarkModeOutlinedIcon />}
-			</IconButton>
+			<Tooltip title={`Switch to ${darkMode ? 'light' : 'dark'} mode`}>
+				<IconButton
+					sx={{ position: 'absolute', top: 8, right: 8 }}
+					size='small'
+					onClick={() => {
+						setDarkmode(!darkMode);
+						setCookie('darkmode', !darkMode);
+					}}
+				>
+					{darkMode ? <LightModeIcon /> : <DarkModeOutlinedIcon />}
+				</IconButton>
+			</Tooltip>
 
 			<Header />
 			<Experience />
+			<Education />
 		</ThemeProvider>
 	);
 }

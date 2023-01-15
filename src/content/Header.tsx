@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { useSnackbar } from 'notistack';
+import { useTheme } from '@mui/material/styles';
 
 import { isMobile } from 'react-device-detect';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -18,6 +19,7 @@ import { LinkedInIcon } from '../components/SvgIcons';
 
 export default function App() {
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+	const theme = useTheme();
 
 	const showCopied = () => {
 		enqueueSnackbar('Copied to clipboard', {
@@ -44,7 +46,7 @@ export default function App() {
 			sx={{
 				width: '100%',
 				padding: isMobile ? 1 : 6,
-				backgroundColor: 'primary.main',
+				backgroundColor: theme.palette.mode == 'light' ? 'primary.main' : 'primary.dark',
 				color: 'primary.contrastText',
 			}}
 		>
@@ -111,16 +113,20 @@ export default function App() {
 
 							<Grid item xs={12}>
 								<CopyToClipboard text='evan@trowbridge.tech' onCopy={showCopied}>
-									<Button variant='outlined' color='inherit' startIcon={<MailIcon />} sx={{ borderRadius: 20 }}>
-										evan@trowbridge.tech
-									</Button>
+									<Tooltip title='Copy to clipboard' placement='right'>
+										<Button variant='outlined' color='inherit' startIcon={<MailIcon />} sx={{ borderRadius: 20 }}>
+											evan@trowbridge.tech
+										</Button>
+									</Tooltip>
 								</CopyToClipboard>
 							</Grid>
 							<Grid item xs={12}>
 								<CopyToClipboard text='17173050783' onCopy={showCopied}>
-									<Button variant='outlined' color='inherit' startIcon={<PhoneIcon />} sx={{ borderRadius: 20 }}>
-										+1 717-305-0783
-									</Button>
+									<Tooltip title='Copy to clipboard' placement='right'>
+										<Button variant='outlined' color='inherit' startIcon={<PhoneIcon />} sx={{ borderRadius: 20 }}>
+											+1 717-305-0783
+										</Button>
+									</Tooltip>
 								</CopyToClipboard>
 							</Grid>
 						</Grid>
