@@ -2,7 +2,7 @@ import * as React from 'react';
 import moment from 'moment';
 import { isMobile } from 'react-device-detect';
 
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
@@ -18,7 +18,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import { CocalicoIcon, StevensCollegeIcon } from '../components/SvgIcons';
 
 const StyledTimelineDot = styled(TimelineDot)(({ theme }) => ({
-	backgroundColor: theme.palette.primary.main,
+	backgroundColor: theme.palette.mode == 'light' ? theme.palette.primary.main : theme.palette.primary.dark,
 	boxShadow: '0',
 	'&::after': {
 		position: 'absolute',
@@ -27,7 +27,7 @@ const StyledTimelineDot = styled(TimelineDot)(({ theme }) => ({
 		height: 32,
 		borderRadius: '50%',
 		animation: 'ripple 1.2s infinite ease-in-out',
-		border: `2px solid ${theme.palette.primary.main}`,
+		border: `2px solid ${theme.palette.mode == 'light' ? theme.palette.primary.main : theme.palette.primary.dark}`,
 		content: '""',
 	},
 	'@keyframes ripple': {
@@ -64,6 +64,8 @@ const education = [
 ];
 
 export default function Education() {
+	const theme = useTheme();
+
 	return (
 		<Box
 			sx={{
@@ -109,11 +111,11 @@ export default function Education() {
 											<edu.logo sx={{ height: 32, width: 32 }} />
 										</StyledTimelineDot>
 									) : (
-										<TimelineDot sx={{ backgroundColor: '#f1f1f1' }}>
+										<TimelineDot sx={{ backgroundColor: theme.palette.mode == 'light' ? '#f1f1f1' : '#bdbdbd' }}>
 											<edu.logo sx={{ height: 32, width: 32 }} />
 										</TimelineDot>
 									)}
-									{eduIndex + 1 != education.length && <TimelineConnector sx={edu.end == null ? { bgcolor: 'primary.main' } : {}} />}
+									{eduIndex + 1 != education.length && <TimelineConnector sx={edu.end == null ? { bgcolor: theme.palette.mode == 'light' ? 'primary.main' : 'primary.dark' } : {}} />}
 								</TimelineSeparator>
 								<TimelineContent>
 									<Typography variant='h6'>
