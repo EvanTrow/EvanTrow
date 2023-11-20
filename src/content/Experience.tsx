@@ -15,7 +15,7 @@ import { Box, Chip, Container, Divider, Grid, Link, Stack, Typography } from '@m
 
 import PlaceIcon from '@mui/icons-material/Place';
 import PublicIcon from '@mui/icons-material/Public';
-import { CrestwoodIcon, PennAirIcon, SLTechnologyIcon, DenverWholesaleFoodsIcon, CocalicoIcon } from '../components/SvgIcons';
+import { CrestwoodIcon, PennAirIcon, SLTechnologyIcon, DenverWholesaleFoodsIcon, CocalicoIcon, ConradCompanyIcon } from '../components/SvgIcons';
 import Tooltip from '@mui/material/Tooltip';
 import PositionDialog from './PositionDialog';
 
@@ -57,17 +57,36 @@ const experience = [
 		end: null,
 		positions: [
 			{
+				title: 'Acumatica Developer',
+				start: '04/13/2023',
+				end: null,
+				details: (
+					<>
+						<dl>
+							<dt>
+								- Collaboration with management to identify end-user requirements. Leading design/discovery sessions to define scope and provide estimates all the way to final
+								development and delivery with the client.
+							</dt>
+							<dt>- Produce efficient and elegant code based on requirements.</dt>
+							<dt>- Test and deploy software.</dt>
+							<dt>- Troubleshoot, debug, maintain, and improve software.</dt>
+							<dt>- Technical documentation to guide future software development.</dt>
+						</dl>
+					</>
+				),
+			},
+			{
 				title: 'Junior Acumatica Developer',
 				start: '09/26/2022',
-				end: null,
-				details: ['Coffee', 'Tea', 'Milk'],
+				end: '04/13/2023',
+				details: undefined,
 			},
 		],
 	},
 	{
-		company: 'PennAir',
-		site: 'https://pennair.com',
-		logo: PennAirIcon,
+		company: 'The Conrad Company',
+		site: 'https://tccholdings.com',
+		logo: ConradCompanyIcon,
 		location: 'York, Pennsylvania',
 		type: 'Full-time',
 		start: '07/09/2020',
@@ -77,7 +96,26 @@ const experience = [
 				title: 'Systems Engineer',
 				start: '07/15/2022',
 				end: '09/12/2022',
-				details: undefined,
+				details: (
+					<>
+						<dl>
+							<dt>ERP Management</dt>
+							<dd>- Communicate and implement third party vendor solutions to provide additional functionality.</dd>
+							<dd>- Test updates, manage changes, and roll-out updates while working with internal decision makers to ensure business continuity.</dd>
+							<dd>- Create training, documentation, workflows, and/or customizations to address end user pain points and inefficiencies.</dd>
+							<br />
+							<dt>Application Development</dt>
+							<dd>- Collaborate with end users to create custom applications to meet business needs.</dd>
+							<dd>- Work with co-workers in an agile development setting.</dd>
+							<dd>- Use Git to manage versions, branches, and enhance collaboration.</dd>
+							<dd>- Develop software as needed using React, Node.JS, PowerShell, C#</dd>
+							<br />
+							<dt>Additional</dt>
+							<dd>- Deploy, maintain, and troubleshoot on-site servers and networking equipment, Azure services.</dd>
+							<dd>- Assist users both on-site and remote. Maintain, log, and troubleshoot tickets.</dd>
+						</dl>
+					</>
+				),
 			},
 			{
 				title: 'Systems Analyst',
@@ -100,7 +138,15 @@ const experience = [
 				title: 'Systems Engineer',
 				start: '04/08/2019',
 				end: '07/09/2020',
-				details: undefined,
+				details: (
+					<>
+						<dl>
+							<dt>- Troubleshoot and diagnose technical issues with hardware and software.</dt>
+							<dt>- Install new systems, CAT5 wiring and equipment.</dt>
+							<dt>- Develop custom software as needed. (Web apps and C# SQL connectors).</dt>
+						</dl>
+					</>
+				),
 			},
 		],
 	},
@@ -117,7 +163,18 @@ const experience = [
 				title: 'System Administrator',
 				start: '05/25/2018',
 				end: '04/08/2019',
-				details: undefined,
+				details: (
+					<>
+						<dl>
+							<dt>- Manage all workstations and mobile devices.</dt>
+							<dt>- Set up and manage VMware ESXi.</dt>
+							<dt>- Set up new users and manage email accounts in Exchange Server.</dt>
+							<dt>- Configured IPs, ports, NAT, firewall, and VPN in router.</dt>
+							<dt>- Troubleshoot workstations, servers, and network.</dt>
+							<dt>- Manage and develop an e-commerce website.</dt>
+						</dl>
+					</>
+				),
 			},
 		],
 	},
@@ -134,10 +191,17 @@ const experience = [
 				title: 'Technology Support',
 				start: '08/22/2018',
 				end: '04/08/2019',
-				details: undefined,
+				details: (
+					<>
+						<dl>
+							<dt>- Worked with team to etch asset numbers, image, and set up logins for 2,500 laptops and 500 computers</dt>
+							<dt>- Sanitized and updated software for computers, projectors, and printers.</dt>
+						</dl>
+					</>
+				),
 			},
 			{
-				title: 'IT Assistant',
+				title: 'IT Assistant (June — August)',
 				start: '06/01/2016',
 				end: '08/22/2018',
 				details: undefined,

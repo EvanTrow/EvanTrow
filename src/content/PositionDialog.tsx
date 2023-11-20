@@ -14,7 +14,7 @@ import SpeakerNotesIcon from '@mui/icons-material/SpeakerNotes';
 type PositionDialogProps = {
 	company: string;
 	position: string;
-	content?: any[];
+	content: JSX.Element | undefined;
 };
 
 export default function PositionDialog(props: PositionDialogProps) {
@@ -38,8 +38,8 @@ export default function PositionDialog(props: PositionDialogProps) {
 						<SpeakerNotesIcon sx={{ height: 24, width: 24 }} />
 					</IconButton>
 				</Stack>
-				<Dialog open={open} onClose={handleClose} aria-labelledby='alert-dialog-title' aria-describedby='alert-dialog-description'>
-					<DialogTitle id='alert-dialog-title'>
+				<Dialog open={open} onClose={handleClose} maxWidth='md' fullWidth>
+					<DialogTitle>
 						<Typography variant='h6'>{props.company}</Typography>
 						<Typography variant='body1' color='text.secondary'>
 							{props.position}
@@ -47,10 +47,12 @@ export default function PositionDialog(props: PositionDialogProps) {
 					</DialogTitle>
 					<Divider />
 					<DialogContent>
-						<DialogContentText id='alert-dialog-description'>{/* <props.content /> */}</DialogContentText>
+						<DialogContentText>{props.content}</DialogContentText>
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={handleClose}>Close</Button>
+						<Button onClick={handleClose} variant='contained'>
+							Close
+						</Button>
 					</DialogActions>
 				</Dialog>
 			</>

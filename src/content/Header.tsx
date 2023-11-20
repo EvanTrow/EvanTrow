@@ -63,7 +63,7 @@ export default function App() {
 							</Grid>
 							<Grid item xs>
 								<Typography variant='body1'>
-									Junior Acumatica Developer at{' '}
+									Acumatica Developer at{' '}
 									<Link
 										sx={{
 											color: 'primary.contrastText',

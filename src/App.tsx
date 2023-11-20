@@ -10,6 +10,7 @@ import { CssBaseline, IconButton, Tooltip } from '@mui/material';
 import Header from './content/Header';
 import Experience from './content/Experience';
 import Education from './content/Education';
+import Skills from './content/Skills';
 
 function App() {
 	const [cookies, setCookie] = useCookies(['darkmode']);
@@ -58,6 +59,7 @@ function App() {
 			<Header />
 			<Experience />
 			<Education />
+			{/* <Skills /> */}
 		</ThemeProvider>
 	);
 }
