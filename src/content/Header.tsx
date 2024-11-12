@@ -83,7 +83,7 @@ export default function App() {
 								<PlaceIcon />
 							</Grid>
 							<Grid item xs>
-								<Typography variant='body1'>York, Pennsylvania</Typography>
+								<Typography variant='body1'>Lititz, Pennsylvania</Typography>
 							</Grid>
 						</Grid>
 					</Grid>
@@ -98,35 +98,50 @@ export default function App() {
 
 							<Grid item xs={12}>
 								<Stack direction='row' spacing={1}>
-									<Tooltip title='LinkedIn'>
-										<IconButton color='inherit' component={Link} href='https://www.linkedin.com/in/EvanTrow/' target='_blank'>
-											<LinkedInIcon />
-										</IconButton>
-									</Tooltip>
-									<Tooltip title='Github'>
-										<IconButton color='inherit' component={Link} href='https://github.com/EvanTrow' target='_blank'>
-											<GitHubIcon />
-										</IconButton>
-									</Tooltip>
+									<Tooltip
+										title='LinkedIn'
+										children={
+											<IconButton color='inherit' component={Link} href='https://www.linkedin.com/in/EvanTrow/' target='_blank'>
+												<LinkedInIcon />
+											</IconButton>
+										}
+									/>
+
+									<Tooltip
+										title='Github'
+										children={
+											<IconButton color='inherit' component={Link} href='https://github.com/EvanTrow' target='_blank'>
+												<GitHubIcon />
+											</IconButton>
+										}
+									/>
 								</Stack>
 							</Grid>
 
 							<Grid item xs={12}>
 								<CopyToClipboard text='evan@trowbridge.tech' onCopy={showCopied}>
-									<Tooltip title='Copy to clipboard' placement='right'>
-										<Button variant='outlined' color='inherit' startIcon={<MailIcon />} sx={{ borderRadius: 20 }}>
-											evan@trowbridge.tech
-										</Button>
-									</Tooltip>
+									<Tooltip
+										title='Copy to clipboard'
+										placement='right'
+										children={
+											<Button variant='outlined' color='inherit' startIcon={<MailIcon />} sx={{ borderRadius: 20 }}>
+												evan@trowbridge.tech
+											</Button>
+										}
+									/>
 								</CopyToClipboard>
 							</Grid>
 							<Grid item xs={12}>
 								<CopyToClipboard text='17173050783' onCopy={showCopied}>
-									<Tooltip title='Copy to clipboard' placement='right'>
-										<Button variant='outlined' color='inherit' startIcon={<PhoneIcon />} sx={{ borderRadius: 20 }}>
-											+1 717-305-0783
-										</Button>
-									</Tooltip>
+									<Tooltip
+										title='Copy to clipboard'
+										placement='right'
+										children={
+											<Button variant='outlined' color='inherit' startIcon={<PhoneIcon />} sx={{ borderRadius: 20 }}>
+												+1 717-305-0783
+											</Button>
+										}
+									/>
 								</CopyToClipboard>
 							</Grid>
 						</Grid>

@@ -60,6 +60,7 @@ const education = [
 		location: 'Denver, Pennsylvania',
 		start: '2014',
 		end: '2018',
+		hideDates: true,
 	},
 ];
 
@@ -100,7 +101,7 @@ export default function Education() {
 					{education.map((edu, eduIndex) => (
 						<div key={eduIndex}>
 							<TimelineItem>
-								{!isMobile && (
+								{!isMobile && edu.hideDates != true && (
 									<TimelineOppositeContent color='textSecondary' sx={{ marginTop: 1.8 }}>
 										{edu.start} - {edu.end ? edu.end : 'Present'}
 									</TimelineOppositeContent>
@@ -139,7 +140,7 @@ export default function Education() {
 										</Grid>
 									</Grid>
 
-									{isMobile && (
+									{isMobile && edu.hideDates != true && (
 										<Typography variant='body1'>
 											{edu.start} - {edu.end ? edu.end : 'Present'}
 										</Typography>
