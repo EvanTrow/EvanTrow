@@ -32,6 +32,11 @@ jobs:
           npm ci
           npm run build
 
+      - name: Remove symlinks/hardlinks from build output
+        run: |
+          find ./build -type l -print -delete
+          find ./build -type f -links +1 -print -delete
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
