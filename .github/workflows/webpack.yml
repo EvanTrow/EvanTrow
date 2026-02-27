@@ -26,24 +26,27 @@ jobs:
           cache: npm
 
       - name: Install & Build
-        env:
-          NODE_OPTIONS: --openssl-legacy-provider
         run: |
           npm ci
           npm run build
 
-      - name: Remove symlinks/hardlinks from build output
+      - name: Sanitize build output (no symlinks/hardlinks)
         run: |
-          find ./build -type l -print -delete
-          find ./build -type f -links +1 -print -delete
+          set -euo pipefail
+          find ./build -type l -print -delete || true
+
+          while IFS= read -r -d '' f; do
+            tmp="${f}.tmp.$$"
+            cp --remove-destination --preserve=mode,timestamps "$f" "$tmp"
+            mv -f "$tmp" "$f"
+          done < <(find ./build -type f -links +1 -print0)
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload Pages Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: github-pages
           path: ./build
 
   deploy:
