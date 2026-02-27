@@ -18,7 +18,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import { CocalicoIcon, StevensCollegeIcon } from '../components/SvgIcons';
 
 const StyledTimelineDot = styled(TimelineDot)(({ theme }) => ({
-	backgroundColor: theme.palette.mode == 'light' ? theme.palette.primary.main : theme.palette.primary.dark,
+	backgroundColor: theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.primary.dark,
 	boxShadow: '0',
 	'&::after': {
 		position: 'absolute',
@@ -27,7 +27,7 @@ const StyledTimelineDot = styled(TimelineDot)(({ theme }) => ({
 		height: 32,
 		borderRadius: '50%',
 		animation: 'ripple 1.2s infinite ease-in-out',
-		border: `2px solid ${theme.palette.mode == 'light' ? theme.palette.primary.main : theme.palette.primary.dark}`,
+		border: `2px solid ${theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.primary.dark}`,
 		content: '""',
 	},
 	'@keyframes ripple': {
@@ -91,10 +91,10 @@ export default function Skills() {
 										padding: '6px 12px 0px 0px',
 									},
 									padding: 0,
-							  }
+								}
 							: {
 									padding: 0,
-							  }
+								}
 					}
 				>
 					{skills.map((edu, eduIndex) => (
@@ -106,16 +106,16 @@ export default function Skills() {
 									</TimelineOppositeContent>
 								)}
 								<TimelineSeparator>
-									{edu.end == null ? (
+									{edu.end === null ? (
 										<StyledTimelineDot>
 											<edu.logo sx={{ height: 32, width: 32 }} />
 										</StyledTimelineDot>
 									) : (
-										<TimelineDot sx={{ backgroundColor: theme.palette.mode == 'light' ? '#f1f1f1' : '#bdbdbd' }}>
+										<TimelineDot sx={{ backgroundColor: theme.palette.mode === 'light' ? '#f1f1f1' : '#bdbdbd' }}>
 											<edu.logo sx={{ height: 32, width: 32 }} />
 										</TimelineDot>
 									)}
-									{eduIndex + 1 != skills.length && <TimelineConnector sx={edu.end == null ? { bgcolor: theme.palette.mode == 'light' ? 'primary.main' : 'primary.dark' } : {}} />}
+									{eduIndex + 1 !== skills.length && <TimelineConnector sx={edu.end === null ? { bgcolor: theme.palette.mode === 'light' ? 'primary.main' : 'primary.dark' } : {}} />}
 								</TimelineSeparator>
 								<TimelineContent>
 									<Typography variant='h6'>

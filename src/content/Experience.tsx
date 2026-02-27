@@ -15,14 +15,14 @@ import { Box, Chip, Container, Divider, Grid, Link, Stack, Typography } from '@m
 
 import PlaceIcon from '@mui/icons-material/Place';
 import PublicIcon from '@mui/icons-material/Public';
-import { CrestwoodIcon, PennAirIcon, SLTechnologyIcon, DenverWholesaleFoodsIcon, CocalicoIcon, ConradCompanyIcon } from '../components/SvgIcons';
+import { CrestwoodIcon, SLTechnologyIcon, DenverWholesaleFoodsIcon, CocalicoIcon, ConradCompanyIcon } from '../components/SvgIcons';
 import Tooltip from '@mui/material/Tooltip';
 import PositionDialog from './PositionDialog';
 
 const prettyDate = require('pretty-date-duration');
 
 const StyledTimelineDot = styled(TimelineDot)(({ theme }) => ({
-	backgroundColor: theme.palette.mode == 'light' ? theme.palette.primary.main : theme.palette.primary.dark,
+	backgroundColor: theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.primary.dark,
 	boxShadow: '0',
 	'&::after': {
 		position: 'absolute',
@@ -31,7 +31,7 @@ const StyledTimelineDot = styled(TimelineDot)(({ theme }) => ({
 		height: 32,
 		borderRadius: '50%',
 		animation: 'ripple 1.2s infinite ease-in-out',
-		border: `2px solid ${theme.palette.mode == 'light' ? theme.palette.primary.main : theme.palette.primary.dark}`,
+		border: `2px solid ${theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.primary.dark}`,
 		content: '""',
 	},
 	'@keyframes ripple': {
@@ -238,10 +238,10 @@ export default function Experience() {
 										padding: '6px 12px 0px 0px',
 									},
 									padding: 0,
-							  }
+								}
 							: {
 									padding: 0,
-							  }
+								}
 					}
 				>
 					{experience.map((exp, expIndex) => (
@@ -253,16 +253,16 @@ export default function Experience() {
 									</TimelineOppositeContent>
 								)}
 								<TimelineSeparator>
-									{exp.end == null ? (
+									{exp.end === null ? (
 										<StyledTimelineDot>
 											<exp.logo sx={{ height: 32, width: 32 }} />
 										</StyledTimelineDot>
 									) : (
-										<TimelineDot sx={{ backgroundColor: theme.palette.mode == 'light' ? '#f1f1f1' : '#bdbdbd' }}>
+										<TimelineDot sx={{ backgroundColor: theme.palette.mode === 'light' ? '#f1f1f1' : '#bdbdbd' }}>
 											<exp.logo sx={{ height: 32, width: 32 }} />
 										</TimelineDot>
 									)}
-									<TimelineConnector sx={exp.end == null ? { bgcolor: theme.palette.mode == 'light' ? 'primary.main' : 'primary.dark' } : {}} />
+									<TimelineConnector sx={exp.end === null ? { bgcolor: theme.palette.mode === 'light' ? 'primary.main' : 'primary.dark' } : {}} />
 								</TimelineSeparator>
 								<TimelineContent>
 									<Typography variant='h6'>
@@ -310,7 +310,7 @@ export default function Experience() {
 								<TimelineItem key={posIndex}>
 									{!isMobile && <TimelineOppositeContent />}
 									<TimelineSeparator>
-										<TimelineDot color={pos.end == null ? 'primary' : undefined} sx={{ marginLeft: 2, marginRight: 2 }} />
+										<TimelineDot color={pos.end === null ? 'primary' : undefined} sx={{ marginLeft: 2, marginRight: 2 }} />
 										{expIndex + 1 === experience.length && posIndex + 1 === exp.positions.length ? '' : <TimelineConnector />}
 									</TimelineSeparator>
 									<TimelineContent>
@@ -341,20 +341,7 @@ function getPrettyDuration(start: string, end: string | null): string {
 
 	let years = moment.duration(moment(end).diff(start)).asYears();
 
-	let months = Math.round(
-		moment
-			.duration(
-				moment.duration(moment(end).diff(start)).asYears() -
-					parseInt(
-						moment
-							.duration(moment(end).diff(start))
-							.asYears()
-							.toString()
-					),
-				'years'
-			)
-			.asMonths()
-	);
+	let months = Math.round(moment.duration(moment.duration(moment(end).diff(start)).asYears() - parseInt(moment.duration(moment(end).diff(start)).asYears().toString()), 'years').asMonths());
 
 	if (years >= 1 && months > 0) {
 		return `${Math.floor(years)} year${years > 1 ? 's' : ''} ${months} month${months > 1 ? 's' : ''}`;

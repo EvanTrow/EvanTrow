@@ -46,7 +46,7 @@ export default function App() {
 			sx={{
 				width: '100%',
 				padding: isMobile ? 1 : 6,
-				backgroundColor: theme.palette.mode == 'light' ? 'primary.main' : 'primary.dark',
+				backgroundColor: theme.palette.mode === 'light' ? 'primary.main' : 'primary.dark',
 				color: 'primary.contrastText',
 			}}
 		>

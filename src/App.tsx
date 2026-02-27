@@ -10,11 +10,10 @@ import { CssBaseline, IconButton, Tooltip } from '@mui/material';
 import Header from './content/Header';
 import Experience from './content/Experience';
 import Education from './content/Education';
-import Skills from './content/Skills';
 
 function App() {
 	const [cookies, setCookie] = useCookies(['darkmode']);
-	const [darkMode, setDarkmode] = React.useState<boolean>(cookies.darkmode == 'true' ? true : false);
+	const [darkMode, setDarkmode] = React.useState<boolean>(cookies.darkmode === 'true' ? true : false);
 
 	const theme = React.useMemo(
 		() =>
@@ -36,7 +35,7 @@ function App() {
 					},
 				},
 			}),
-		[darkMode]
+		[darkMode],
 	);
 
 	return (

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import moment from 'moment';
 import { isMobile } from 'react-device-detect';
 
 import { styled, useTheme } from '@mui/material/styles';
@@ -18,7 +17,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import { CocalicoIcon, StevensCollegeIcon } from '../components/SvgIcons';
 
 const StyledTimelineDot = styled(TimelineDot)(({ theme }) => ({
-	backgroundColor: theme.palette.mode == 'light' ? theme.palette.primary.main : theme.palette.primary.dark,
+	backgroundColor: theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.primary.dark,
 	boxShadow: '0',
 	'&::after': {
 		position: 'absolute',
@@ -27,7 +26,7 @@ const StyledTimelineDot = styled(TimelineDot)(({ theme }) => ({
 		height: 32,
 		borderRadius: '50%',
 		animation: 'ripple 1.2s infinite ease-in-out',
-		border: `2px solid ${theme.palette.mode == 'light' ? theme.palette.primary.main : theme.palette.primary.dark}`,
+		border: `2px solid ${theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.primary.dark}`,
 		content: '""',
 	},
 	'@keyframes ripple': {
@@ -92,31 +91,33 @@ export default function Education() {
 										padding: '6px 12px 0px 0px',
 									},
 									padding: 0,
-							  }
+								}
 							: {
 									padding: 0,
-							  }
+								}
 					}
 				>
 					{education.map((edu, eduIndex) => (
 						<div key={eduIndex}>
 							<TimelineItem>
-								{!isMobile && edu.hideDates != true && (
+								{!isMobile && edu.hideDates !== true && (
 									<TimelineOppositeContent color='textSecondary' sx={{ marginTop: 1.8 }}>
 										{edu.start} - {edu.end ? edu.end : 'Present'}
 									</TimelineOppositeContent>
 								)}
 								<TimelineSeparator>
-									{edu.end == null ? (
+									{edu.end === null ? (
 										<StyledTimelineDot>
 											<edu.logo sx={{ height: 32, width: 32 }} />
 										</StyledTimelineDot>
 									) : (
-										<TimelineDot sx={{ backgroundColor: theme.palette.mode == 'light' ? '#f1f1f1' : '#bdbdbd' }}>
+										<TimelineDot sx={{ backgroundColor: theme.palette.mode === 'light' ? '#f1f1f1' : '#bdbdbd' }}>
 											<edu.logo sx={{ height: 32, width: 32 }} />
 										</TimelineDot>
 									)}
-									{eduIndex + 1 != education.length && <TimelineConnector sx={edu.end == null ? { bgcolor: theme.palette.mode == 'light' ? 'primary.main' : 'primary.dark' } : {}} />}
+									{eduIndex + 1 !== education.length && (
+										<TimelineConnector sx={edu.end === null ? { bgcolor: theme.palette.mode === 'light' ? 'primary.main' : 'primary.dark' } : {}} />
+									)}
 								</TimelineSeparator>
 								<TimelineContent>
 									<Typography variant='h6'>
@@ -140,7 +141,7 @@ export default function Education() {
 										</Grid>
 									</Grid>
 
-									{isMobile && edu.hideDates != true && (
+									{isMobile && edu.hideDates !== true && (
 										<Typography variant='body1'>
 											{edu.start} - {edu.end ? edu.end : 'Present'}
 										</Typography>
