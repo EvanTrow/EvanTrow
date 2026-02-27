@@ -83,7 +83,7 @@ export default function App() {
 								<PlaceIcon />
 							</Grid>
 							<Grid item xs>
-								<Typography variant='body1'>Lititz, Pennsylvania</Typography>
+								<Typography variant='body1'>Lancaster, Pennsylvania</Typography>
 							</Grid>
 						</Grid>
 					</Grid>
