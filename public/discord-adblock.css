@@ -80,8 +80,8 @@ div[class^=hoverBarButton_][aria-label=Forward] {
 }
 
 /* "Server Boosts" button at the top of channel list */
-#channels > ul > li:has([id^=skill-trees--]),
-#channels > ul > li:has([id^=skill-trees--]) + [class^=sectionDivider_] {
+#channels > ul > li:has([id^=skill-trees-]),
+#channels > ul > li:has([id^=skill-trees-]) + [class^=sectionDivider_] {
   display: none;
 }
 
@@ -118,4 +118,34 @@ div[class^="member__"] > div[class*="nameplated__"] > div[class^="container__"]:
 /* Community badge/tag thing */
 span[class^="chipletContainerInner__"]:has(img[class^="badge__"]) {
   display: none;
+}
+
+/* Hide Boost Goal container */
+div[class^="container__"][class*="containerWithMargin__"] > div[class^="contentContainer__"] > div[class^="progressContainer__"],
+div[class^="container__"][class*="containerWithMargin__"] > div[class^="contentContainer__"] > div[class^="progress__"],
+div[class^="container__"][class*="containerWithMargin__"] > div[class^="contentContainer__"] > div[class^="textContainer__"] {
+  display: none;
+}
+div[class^="container__"][class*="containerWithMargin__"] {
+  display: none;
+}
+
+/* Hide empty 12px spacer divs in channel list */
+#channels div[style="height: 12px;"] {
+  display: none;
+}
+
+/* Hide Nitro link in private channels list (robust selector) */
+div[class*="scroller"][class*="scrollerBase"][data-list-id^="private-channels-"] a[data-list-item-id$="__nitro"] {
+  display: none !important;
+}
+
+/* Hide Shop link in private channels list (robust selector) */
+div[class*="scroller"][class*="scrollerBase"][data-list-id^="private-channels-"] a[data-list-item-id$="__shop"] {
+  display: none !important;
+}
+
+/* Hide Quests link in private channels list (robust selector) */
+div[class*="scroller"][class*="scrollerBase"][data-list-id^="private-channels-"] a[data-list-item-id$="__quests"] {
+  display: none !important;
 }
