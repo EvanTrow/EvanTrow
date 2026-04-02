@@ -1,0 +1,121 @@
+/* ==UserStyle==
+@name           Discord AdBlock Extras
+@namespace      https://github.com/CroissantDuNord/discord-adblock
+@version        1.0.0
+@description    Removes extra Nitro-related objects from Discord that do not explicitly count as advertising.
+@author         Ridge & contributors
+==/UserStyle== */
+
+/* It is highly recommended you manually import the rules you want from this file, rather than using the entire list. */
+/* This is a highly opinionated collection of rules that remove clutter from the client, that some might find useful or desirable. */
+
+/* Avatar decorations */
+svg[class*=avatarDecoration_] {
+  display: none;
+}
+img[class*=avatarDecoration_] {
+  display: none;
+}
+
+/* Profile decorations */
+div[class*=profileEffects] {
+    display: none;
+}
+div[class*=userProfileModalInner]>header>svg>foreignObject>div[class*=bannerPremium] {
+    display: none;
+}
+
+/* Server booster icon */
+svg[class*=premiumIcon_] {
+    display: none;
+}
+
+/* Server boost progress bar */
+ul > li:has(div[data-list-item-id*=channels___boosts-]) {
+    display: none;
+}
+
+/* Nitro Icon Sever */
+div[class^=guildIconContainer_]:has(svg[class^=boostedGuildIconGem_]) {
+    display: none;
+}
+
+/* Quests icon */
+svg[class^=questsIcon_] {
+  display: none;
+}
+
+/* "Quest Completed" badge in profiles */
+div:has(> a[href="https://discord.com/discovery/quests"]) {
+    display: none;
+}
+
+/* "Nitro" and "Server Boosting" badges in profiles */
+div:has(> a[href="https://discord.com/settings/premium"]) {
+    display: none;
+}
+
+/* "Hype Squad" badge in profiles */
+div:has(> a[href="https://discord.com/settings/hypesquad-online"]) {
+    display: none;
+}
+
+/* Activity list */
+h3[class^=membersGroup_]:has(span[role="button"]) {
+  display: none;
+}
+div[class^=container_] > aside[class^=membersWrap_] > div[class^=members_] > div[role^=list] > div:has(div[class*="openOnHover_"]) {
+  display: none;
+}
+
+/* "Forward" hover bar button */
+div[class^=hoverBarButton_][aria-label=Forward] {
+  display: none;
+}
+
+/* "Events" button at the top of channel list */
+#channels > ul > li:has([id^=upcoming-events-]),
+#channels > ul > li:has([id^=upcoming-events-]) + [class^=sectionDivider_] {
+  display: none;
+}
+
+/* "Server Boosts" button at the top of channel list */
+#channels > ul > li:has([id^=skill-trees--]),
+#channels > ul > li:has([id^=skill-trees--]) + [class^=sectionDivider_] {
+  display: none;
+}
+
+/* "Discover" footer on the left sidebar */
+div[class^=footer_]:has(div[data-list-item-id="guildsnav___guild-discover-button"]) {
+    display: none;
+}
+/* "Discover" button in the new design */
+div[class^=itemsContainer_] > div[class^=stack_] > div[class^=listItem_]:has(div[data-list-item-id=guildsnav___guild-discover-button]) {
+display: none;
+}
+
+/* Soundmoji */
+div[class^=categorySection_]:has(div[class^=soundmojiViewMore_]) {
+display: none;
+}
+#soundboard-picker-tab {
+display: none;
+}
+div[class^="categoryItemDefaultCategory_"]:has(path[d="M14.24 1.03a1 1 0 0 1 .73 1.21l-1 4a1 1 0 0 1-1.94-.48l1-4a1 1 0 0 1 1.21-.73ZM20.7 4.7a1 1 0 0 0-1.4-1.4l-4 4a1 1 0 0 0 1.4 1.4l4-4Z"]+path[d="M15.14 20.14c1.78-1.78.7-5.75-2.42-8.86-3.11-3.12-7.08-4.2-8.86-2.42A3.13 3.13 0 0 0 3 11V11l-1.16 8.92a2 2 0 0 0 2.24 2.24L13 21c.86-.04 1.6-.32 2.14-.86Zm-1.3-3.4a9.61 9.61 0 0 0-2.53-4.05 9.61 9.61 0 0 0-4.05-2.53c-1.27-.35-1.82-.05-1.99.11-.16.17-.46.72-.11 2a9.61 9.61 0 0 0 2.53 4.04 9.61 9.61 0 0 0 4.05 2.53c1.27.35 1.82.05 1.99-.11.16-.17.46-.72.11-2Z"]+path[d="M7.05 3.32a1 1 0 0 1 1.9-.64l1 3a1 1 0 1 1-1.9.64l-1-3ZM22.97 9.76a1 1 0 0 0-1.21-.73l-4 1a1 1 0 1 0 .48 1.94l4-1a1 1 0 0 0 .73-1.21ZM20.68 16.95a1 1 0 0 0 .64-1.9l-3-1a1 1 0 0 0-.64 1.9l3 1Z"]) {
+display: none;
+}
+
+/* Nameplate */
+div[class^="member__"] > div[class*="nameplated__"] > div[class^="container__"]:has(div[class^="videoContainer__"]) {
+  display: none;
+}
+
+/* Clan badges in guild user list */
+[class*="chipletContainerInner_"]:has([src*="/clan-badges/"]) {
+  display: none;
+}
+
+/* Community badge/tag thing */
+span[class^="chipletContainerInner__"]:has(img[class^="badge__"]) {
+  display: none;
+}
