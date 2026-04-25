@@ -1,0 +1,20 @@
+﻿[
+    {
+        "description":  "This plugin generates and renews an SSL cert for Jellyfin.",
+        "owner":  "EvanTrow",
+        "guid":  "87cfc669-474e-46c6-9940-b32587773e57",
+        "versions":  [
+                         {
+                             "changelog":  "1.0.0.0: Initial Release\n",
+                             "version":  "1.0.0.0",
+                             "checksum":  "6C7BFC3B170C443AEE3D47763BE40A2E",
+                             "timestamp":  "2025-09-07T20:01:48Z",
+                             "targetAbi":  "10.10.0.0",
+                             "sourceUrl":  "https://trowbridge.tech/jellyfin/certbot/JellyfinCertbot.zip"
+                         }
+                     ],
+        "name":  "Certbot",
+        "overview":  "Generate and renew SSL cert",
+        "category":  "General"
+    }
+]

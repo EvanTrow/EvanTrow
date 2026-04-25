@@ -1,0 +1,20 @@
+﻿[
+    {
+        "description":  "This plugin allows users to sign in with Discord.",
+        "owner":  "EvanTrow",
+        "guid":  "359a7d2a-1c54-4e70-abbb-01bc73f098cf",
+        "versions":  [
+                         {
+                             "changelog":  "1.0.0.0: Initial Release....\n",
+                             "version":  "1.0.0.0",
+                             "checksum":  "EBA94DDC559B69A761C6E0A183EAF6EC",
+                             "timestamp":  "2025-12-29T17:25:31Z",
+                             "targetAbi":  "10.11.0.0",
+                             "sourceUrl":  "http://192.168.1.10:56080/jellyfin/discord/JellyfinDiscordAuth.zip"
+                         }
+                     ],
+        "name":  "Discord Authentication",
+        "overview":  "Users can login with Discord",
+        "category":  "Authentication"
+    }
+]
