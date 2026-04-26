@@ -10,7 +10,7 @@
 				"checksum": "E676C2F62044EB5A7D3C6F74E42BBEB3",
 				"timestamp": "2026-04-26T20:53:50Z",
 				"targetAbi": "10.11.0.0",
-				"sourceUrl": "https://github.com/EvanTrow/Jellyfin-Unused-Media/releases/download/1.0.0.0/Jellyfin.Plugin.UnusedMedia.zip"
+				"sourceUrl": "https://trowbridge.tech/jellyfin/Jellyfin-Unused-Media/1.0.0.0/Jellyfin.Plugin.UnusedMedia.zip"
 			}
 		],
 		"name": "Unused Media",
