@@ -1,0 +1,20 @@
+﻿[
+	{
+		"description": "Displays a list of media that has not been played by any user.",
+		"owner": "EvanTrow",
+		"guid": "7b0e2583-bedf-47e4-8116-c76967d30cd6",
+		"versions": [
+			{
+				"changelog": "1.0.0.0: Initial Release.\n",
+				"version": "1.0.0.0",
+				"checksum": "05829E407321788BD39F6178D85B5E38",
+				"timestamp": "2026-04-26T20:07:27Z",
+				"targetAbi": "10.11.0.0",
+				"sourceUrl": "https://trowbridge.tech/jellyfin/Jellyfin-Unused-Media/1.0.0.0/Jellyfin.Plugin.UnusedMedia.zip"
+			}
+		],
+		"name": "Unused Media",
+		"overview": "Find movies and TV shows that no user has watched.",
+		"category": "General"
+	}
+]
