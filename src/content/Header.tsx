@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Briefcase, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 
 import { useToast } from '../components/Toast';
+import { isLikelyBot } from '../utils/botDetection';
+import { getEmail, getPhoneDigits, getPhoneDisplay } from '../utils/contact';
+import { getRecaptchaToken } from '../utils/recaptcha';
 import styles from './Header.module.css';
 
 export default function Header() {
 	const showToast = useToast();
+	const [isBot, setIsBot] = useState(() => isLikelyBot());
+
+	useEffect(() => {
+		// Already flagged by the synchronous heuristics — no need to spend a
+		// network round trip confirming it.
+		if (isBot) return;
+
+		let cancelled = false;
+		getRecaptchaToken('view_contact').then((token) => {
+			if (!cancelled && !token) setIsBot(true);
+		});
+		return () => {
+			cancelled = true;
+		};
+	}, [isBot]);
 
 	return (
 		<header className={styles.hero}>
@@ -40,20 +58,22 @@ export default function Header() {
 					{moment().diff('2016-06-15', 'years')} years. I am always learning new technologies and updating myself on the latest tech trends.
 				</p>
 
-				<div className={styles.actions}>
-					<CopyToClipboard text='evan@trowbridge.tech' onCopy={() => showToast('Copied to clipboard')}>
-						<button type='button' className={styles.pillButton} title='Copy to clipboard'>
-							<Mail size={16} />
-							evan@trowbridge.tech
-						</button>
-					</CopyToClipboard>
-					<CopyToClipboard text='17173050783' onCopy={() => showToast('Copied to clipboard')}>
-						<button type='button' className={styles.pillButton} title='Copy to clipboard'>
-							<Phone size={16} />
-							+1 717-305-0783
-						</button>
-					</CopyToClipboard>
-				</div>
+				{!isBot && (
+					<div className={styles.actions}>
+						<CopyToClipboard text={getEmail()} onCopy={() => showToast('Copied to clipboard')}>
+							<button type='button' className={styles.pillButton} title='Copy to clipboard'>
+								<Mail size={16} />
+								{getEmail()}
+							</button>
+						</CopyToClipboard>
+						<CopyToClipboard text={getPhoneDigits()} onCopy={() => showToast('Copied to clipboard')}>
+							<button type='button' className={styles.pillButton} title='Copy to clipboard'>
+								<Phone size={16} />
+								{getPhoneDisplay()}
+							</button>
+						</CopyToClipboard>
+					</div>
+				)}
 
 				<div className={styles.social}>
 					<a className={styles.iconButton} href='https://www.linkedin.com/in/EvanTrow/' target='_blank' rel='noreferrer' aria-label='LinkedIn' title='LinkedIn'>
