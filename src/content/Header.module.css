@@ -1,0 +1,168 @@
+.hero {
+	position: relative;
+	overflow: hidden;
+	padding: var(--space-8) 0 var(--space-7);
+}
+
+.glow {
+	position: absolute;
+	top: -220px;
+	left: 50%;
+	width: 640px;
+	height: 640px;
+	transform: translateX(-50%);
+	background: radial-gradient(circle, var(--accent-soft) 0%, transparent 65%);
+	pointer-events: none;
+	z-index: 0;
+}
+
+.inner {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.avatarRing {
+	width: 120px;
+	height: 120px;
+	padding: 3px;
+	border-radius: 50%;
+	background: linear-gradient(135deg, var(--accent), var(--accent-2));
+	margin-bottom: var(--space-4);
+}
+
+.avatar {
+	width: 100%;
+	height: 100%;
+	display: block;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 3px solid var(--bg);
+	background: var(--bg-inset);
+}
+
+.name {
+	font-size: clamp(1.75rem, 1rem + 3vw, 2.75rem);
+	font-weight: 800;
+	letter-spacing: -0.02em;
+}
+
+.metaList {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-2);
+	margin-top: var(--space-3);
+}
+
+.metaRow {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	color: var(--text-muted);
+	font-size: 0.95rem;
+}
+
+.metaRow svg {
+	color: var(--text-faint);
+	flex-shrink: 0;
+}
+
+.metaLink {
+	color: var(--text);
+	font-weight: 600;
+	border-bottom: 1px solid transparent;
+	transition:
+		color var(--dur-fast) var(--ease),
+		border-color var(--dur-fast) var(--ease);
+}
+
+.metaLink:hover {
+	color: var(--accent);
+	border-color: var(--accent);
+}
+
+.bio {
+	max-width: 34rem;
+	margin-top: var(--space-4);
+	color: var(--text-muted);
+	font-size: 1rem;
+	line-height: 1.7;
+}
+
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--space-3);
+	margin-top: var(--space-5);
+}
+
+.pillButton {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 9px 18px;
+	border-radius: var(--radius-full);
+	border: 1px solid var(--border);
+	background: var(--bg-elevated);
+	color: var(--text);
+	font-size: 0.9rem;
+	font-weight: 500;
+	box-shadow: var(--shadow-sm);
+	transition:
+		border-color var(--dur-fast) var(--ease),
+		color var(--dur-fast) var(--ease),
+		transform var(--dur-fast) var(--ease);
+}
+
+.pillButton:hover {
+	border-color: var(--accent);
+	color: var(--accent);
+	transform: translateY(-1px);
+}
+
+.social {
+	display: flex;
+	gap: var(--space-3);
+	margin-top: var(--space-5);
+}
+
+.iconButton {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 1px solid var(--border);
+	color: var(--text-muted);
+	transition:
+		color var(--dur-fast) var(--ease),
+		border-color var(--dur-fast) var(--ease),
+		transform var(--dur-fast) var(--ease);
+}
+
+.iconButton:hover {
+	color: var(--accent);
+	border-color: var(--accent);
+	transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+	.hero {
+		padding: var(--space-7) 0 var(--space-6);
+	}
+
+	.actions {
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.pillButton {
+		justify-content: center;
+	}
+}

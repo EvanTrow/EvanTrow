@@ -1,153 +1,69 @@
 import React from 'react';
 import moment from 'moment';
-import { useSnackbar } from 'notistack';
-import { useTheme } from '@mui/material/styles';
-
-import { isMobile } from 'react-device-detect';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Briefcase, Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 
-import { Box, Container, Grid, Avatar, Typography, Link, Stack, IconButton, Tooltip, Button } from '@mui/material';
+import { useToast } from '../components/Toast';
+import styles from './Header.module.css';
 
-import BusinessIcon from '@mui/icons-material/Business';
-import PlaceIcon from '@mui/icons-material/Place';
-import MailIcon from '@mui/icons-material/Mail';
-import PhoneIcon from '@mui/icons-material/Phone';
-import CloseIcon from '@mui/icons-material/Close';
-
-import GitHubIcon from '@mui/icons-material/GitHub';
-import { LinkedInIcon } from '../components/SvgIcons';
-
-export default function App() {
-	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-	const theme = useTheme();
-
-	const showCopied = () => {
-		enqueueSnackbar('Copied to clipboard', {
-			variant: 'success',
-			action: (key) => (
-				<>
-					<IconButton
-						aria-label='close'
-						size='small'
-						sx={{
-							color: 'primary.contrastText',
-						}}
-						onClick={() => closeSnackbar(key)}
-					>
-						<CloseIcon />
-					</IconButton>
-				</>
-			),
-		});
-	};
+export default function Header() {
+	const showToast = useToast();
 
 	return (
-		<Box
-			sx={{
-				width: '100%',
-				padding: isMobile ? 1 : 6,
-				backgroundColor: theme.palette.mode === 'light' ? 'primary.main' : 'primary.dark',
-				color: 'primary.contrastText',
-			}}
-		>
-			<Container>
-				<Grid container spacing={2}>
-					<Grid item sm={12} md={5} lg={4}>
-						<Avatar alt='Evan Trowbridge' src='https://avatars.githubusercontent.com/u/20376151' sx={{ width: 128, height: 128, marginBottom: 1 }} />
-						<Typography variant='h4' noWrap>
-							Evan Trowbridge
-						</Typography>
-						<Grid container mt={1}>
-							<Grid item mr={1}>
-								<BusinessIcon />
-							</Grid>
-							<Grid item xs>
-								<Typography variant='body1'>
-									Acumatica Developer at{' '}
-									<Link
-										sx={{
-											color: 'primary.contrastText',
-											textDecoration: 'none',
-										}}
-										href='https://www.crestwood.com'
-										target='_blank'
-										noWrap
-									>
-										Crestwood Associates
-									</Link>
-								</Typography>
-							</Grid>
-						</Grid>
-						<Grid container mt={1}>
-							<Grid item mr={1}>
-								<PlaceIcon />
-							</Grid>
-							<Grid item xs>
-								<Typography variant='body1'>Lancaster, Pennsylvania</Typography>
-							</Grid>
-						</Grid>
-					</Grid>
-					<Grid item sm={12} md={7} lg={8}>
-						<Grid container spacing={2}>
-							<Grid item xs={12}>
-								<Typography>
-									I've been developing professional and personal software for over {moment().diff('2014/07/15', 'years')} years and working in Information Technology for over{' '}
-									{moment().diff('2016/06/15', 'years')} years. I am always learning new technologies and updating myself on the latest tech trends.
-								</Typography>
-							</Grid>
+		<header className={styles.hero}>
+			<div className={styles.glow} aria-hidden='true' />
+			<div className={`container ${styles.inner}`}>
+				<div className={styles.avatarRing}>
+					<img className={styles.avatar} alt='Evan Trowbridge' src='https://avatars.githubusercontent.com/u/20376151' width={112} height={112} />
+				</div>
 
-							<Grid item xs={12}>
-								<Stack direction='row' spacing={1}>
-									<Tooltip
-										title='LinkedIn'
-										children={
-											<IconButton color='inherit' component={Link} href='https://www.linkedin.com/in/EvanTrow/' target='_blank'>
-												<LinkedInIcon />
-											</IconButton>
-										}
-									/>
+				<h1 className={styles.name}>Evan Trowbridge</h1>
 
-									<Tooltip
-										title='Github'
-										children={
-											<IconButton color='inherit' component={Link} href='https://github.com/EvanTrow' target='_blank'>
-												<GitHubIcon />
-											</IconButton>
-										}
-									/>
-								</Stack>
-							</Grid>
+				<div className={styles.metaList}>
+					<div className={styles.metaRow}>
+						<Briefcase size={16} />
+						<span>
+							Acumatica Developer at{' '}
+							<a className={styles.metaLink} href='https://www.crestwood.com' target='_blank' rel='noreferrer'>
+								Crestwood Associates
+							</a>
+						</span>
+					</div>
+					<div className={styles.metaRow}>
+						<MapPin size={16} />
+						<span>Lancaster, Pennsylvania</span>
+					</div>
+				</div>
 
-							<Grid item xs={12}>
-								<CopyToClipboard text='evan@trowbridge.tech' onCopy={showCopied}>
-									<Tooltip
-										title='Copy to clipboard'
-										placement='right'
-										children={
-											<Button variant='outlined' color='inherit' startIcon={<MailIcon />} sx={{ borderRadius: 20 }}>
-												evan@trowbridge.tech
-											</Button>
-										}
-									/>
-								</CopyToClipboard>
-							</Grid>
-							<Grid item xs={12}>
-								<CopyToClipboard text='17173050783' onCopy={showCopied}>
-									<Tooltip
-										title='Copy to clipboard'
-										placement='right'
-										children={
-											<Button variant='outlined' color='inherit' startIcon={<PhoneIcon />} sx={{ borderRadius: 20 }}>
-												+1 717-305-0783
-											</Button>
-										}
-									/>
-								</CopyToClipboard>
-							</Grid>
-						</Grid>
-					</Grid>
-				</Grid>
-			</Container>
-		</Box>
+				<p className={styles.bio}>
+					I've been developing professional and personal software for over {moment().diff('2014-07-15', 'years')} years and working in Information Technology for over{' '}
+					{moment().diff('2016-06-15', 'years')} years. I am always learning new technologies and updating myself on the latest tech trends.
+				</p>
+
+				<div className={styles.actions}>
+					<CopyToClipboard text='evan@trowbridge.tech' onCopy={() => showToast('Copied to clipboard')}>
+						<button type='button' className={styles.pillButton} title='Copy to clipboard'>
+							<Mail size={16} />
+							evan@trowbridge.tech
+						</button>
+					</CopyToClipboard>
+					<CopyToClipboard text='17173050783' onCopy={() => showToast('Copied to clipboard')}>
+						<button type='button' className={styles.pillButton} title='Copy to clipboard'>
+							<Phone size={16} />
+							+1 717-305-0783
+						</button>
+					</CopyToClipboard>
+				</div>
+
+				<div className={styles.social}>
+					<a className={styles.iconButton} href='https://www.linkedin.com/in/EvanTrow/' target='_blank' rel='noreferrer' aria-label='LinkedIn' title='LinkedIn'>
+						<Linkedin size={18} />
+					</a>
+					<a className={styles.iconButton} href='https://github.com/EvanTrow' target='_blank' rel='noreferrer' aria-label='GitHub' title='GitHub'>
+						<Github size={18} />
+					</a>
+				</div>
+			</div>
+		</header>
 	);
 }

@@ -1,0 +1,75 @@
+.trigger {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font: inherit;
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: var(--text);
+	padding: 2px 0;
+	transition: color var(--dur-fast) var(--ease);
+}
+
+.trigger:hover {
+	color: var(--accent);
+}
+
+.chevron {
+	color: var(--text-faint);
+	transition: transform var(--dur-med) var(--ease);
+	flex-shrink: 0;
+}
+
+.chevronOpen {
+	transform: rotate(180deg);
+}
+
+.panel {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows var(--dur-med) var(--ease);
+}
+
+.panelInner {
+	overflow: hidden;
+	min-height: 0;
+}
+
+.panelInner :is(ul) {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+	padding: var(--space-2) 0 var(--space-3);
+	font-size: 0.875rem;
+	line-height: 1.6;
+	color: var(--text-muted);
+}
+
+.panelInner :is(li) {
+	position: relative;
+	padding-left: var(--space-4);
+}
+
+.panelInner :is(li)::before {
+	content: '';
+	position: absolute;
+	left: 3px;
+	top: 0.65em;
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: var(--text-faint);
+}
+
+.panelInner :is(h4) {
+	font-size: 0.75rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--accent);
+	margin: var(--space-3) 0 0;
+}
+
+.panelInner :is(h4):first-child {
+	margin-top: var(--space-2);
+}

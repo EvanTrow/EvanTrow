@@ -1,0 +1,247 @@
+.timeline {
+	display: flex;
+	flex-direction: column;
+}
+
+.entry {
+	display: grid;
+	grid-template-columns: 156px 40px 1fr;
+	column-gap: var(--space-4);
+}
+
+.dateAside {
+	grid-column: 1;
+	padding-top: 10px;
+	text-align: right;
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	white-space: nowrap;
+	color: var(--text-faint);
+}
+
+.dateInline {
+	display: none;
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	color: var(--text-faint);
+	margin-top: 2px;
+}
+
+.markerCol {
+	grid-column: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.marker {
+	position: relative;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--logo-bg);
+	border: 1px solid var(--logo-border);
+	box-shadow: var(--shadow-sm);
+	color: var(--text-muted);
+	flex-shrink: 0;
+}
+
+.markerCurrent {
+	border-color: var(--accent);
+}
+
+.markerCurrent::after {
+	content: '';
+	position: absolute;
+	inset: -1px;
+	border-radius: 50%;
+	border: 1.5px solid var(--accent);
+	animation: ripple 1.8s var(--ease) infinite;
+}
+
+@keyframes ripple {
+	0% {
+		transform: scale(0.92);
+		opacity: 0.9;
+	}
+	100% {
+		transform: scale(1.55);
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.markerCurrent::after {
+		animation: none;
+	}
+}
+
+.connector {
+	flex: 1;
+	width: 2px;
+	min-height: var(--space-5);
+	background: var(--border);
+	margin-top: 4px;
+}
+
+.entry:last-child .connector {
+	visibility: hidden;
+}
+
+.content {
+	grid-column: 3;
+	padding-bottom: var(--space-6);
+	min-width: 0;
+}
+
+.entry:last-child .content {
+	padding-bottom: 0;
+}
+
+.title {
+	font-size: 1.05rem;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+.title a {
+	transition: color var(--dur-fast) var(--ease);
+}
+
+.title a:hover {
+	color: var(--accent);
+}
+
+.metaRow {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	color: var(--text-muted);
+	font-size: 0.875rem;
+	margin-top: 4px;
+}
+
+.metaRow svg {
+	flex-shrink: 0;
+	color: var(--text-faint);
+}
+
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-top: var(--space-3);
+}
+
+.tag {
+	font-family: var(--font-mono);
+	font-size: 0.7rem;
+	letter-spacing: 0.02em;
+	padding: 3px 10px;
+	border-radius: var(--radius-full);
+	background: var(--bg-inset);
+	color: var(--text-muted);
+	border: 1px solid var(--border);
+}
+
+.subList {
+	margin-top: var(--space-4);
+	display: flex;
+	flex-direction: column;
+}
+
+.subEntry {
+	display: grid;
+	grid-template-columns: 20px 1fr;
+	column-gap: var(--space-3);
+}
+
+.subMarkerCol {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.subDot {
+	width: 8px;
+	height: 8px;
+	margin-top: 8px;
+	border-radius: 50%;
+	background: var(--border-strong);
+	flex-shrink: 0;
+}
+
+.subDotCurrent {
+	background: var(--accent);
+}
+
+.subConnector {
+	flex: 1;
+	width: 2px;
+	min-height: var(--space-3);
+	background: var(--border);
+	margin-top: 4px;
+}
+
+.subEntry:last-child .subConnector {
+	visibility: hidden;
+}
+
+.subContent {
+	padding-bottom: var(--space-4);
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.subEntry:last-child .subContent {
+	padding-bottom: 0;
+}
+
+.subTitle {
+	font-size: 0.9rem;
+	font-weight: 500;
+	padding: 2px 0;
+}
+
+.subDate {
+	font-family: var(--font-mono);
+	font-size: 0.7rem;
+	color: var(--text-faint);
+}
+
+@media (max-width: 640px) {
+	.entry {
+		grid-template-columns: 32px 1fr;
+		column-gap: var(--space-3);
+	}
+
+	.dateAside {
+		display: none;
+	}
+
+	.dateInline {
+		display: block;
+	}
+
+	.markerCol {
+		grid-column: 1;
+	}
+
+	.content {
+		grid-column: 2;
+	}
+
+	.marker {
+		width: 32px;
+		height: 32px;
+	}
+
+	.marker svg {
+		width: 16px;
+		height: 16px;
+	}
+}
