@@ -14,6 +14,7 @@
 				--accent: #4f8cff;
 				--accent-soft: rgba(79, 140, 255, 0.12);
 				--good: #4fd18b;
+				--warn: #f2b84b;
 			}
 
 			* {
@@ -129,6 +130,42 @@
 				border-radius: 6px;
 			}
 
+			/* --- glossary --- */
+			.glossary {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+				gap: 14px;
+			}
+
+			.glossary-item {
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid var(--panel-border);
+				border-radius: 10px;
+				padding: 14px 16px;
+			}
+
+			.glossary-item .term {
+				font-weight: 700;
+				color: var(--accent);
+				margin-bottom: 6px;
+				display: flex;
+				align-items: baseline;
+				flex-wrap: wrap;
+				gap: 8px;
+			}
+
+			.glossary-item .term-full {
+				font-weight: 400;
+				color: var(--text-muted);
+				font-size: 0.8rem;
+			}
+
+			.glossary-item .def {
+				font-size: 0.88rem;
+				color: var(--text);
+				line-height: 1.5;
+			}
+
 			/* --- category bars --- */
 			.bar-row {
 				display: grid;
@@ -150,10 +187,19 @@
 				overflow: hidden;
 			}
 
-			.bar-fill {
-				background: linear-gradient(90deg, var(--accent), #7fb0ff);
+			.bar-fill-group {
+				display: flex;
 				height: 100%;
-				border-radius: 6px;
+			}
+
+			.bar-seg-acv {
+				background: linear-gradient(90deg, var(--good), #82e6b6);
+				height: 100%;
+			}
+
+			.bar-seg-deprec {
+				background: linear-gradient(90deg, var(--warn), #f7d38a);
+				height: 100%;
 			}
 
 			.bar-value {
@@ -162,14 +208,61 @@
 				font-variant-numeric: tabular-nums;
 			}
 
+			.bar-detail {
+				grid-column: 2 / 4;
+				margin: -4px 0 12px;
+				font-size: 0.78rem;
+				color: var(--text-muted);
+			}
+
+			.bar-detail .v-acv {
+				color: var(--good);
+				font-weight: 600;
+			}
+
+			.bar-detail .v-deprec {
+				color: var(--warn);
+				font-weight: 600;
+			}
+
+			.bar-legend {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 16px;
+				margin: -6px 0 18px;
+				font-size: 0.8rem;
+				color: var(--text-muted);
+			}
+
+			.bar-legend .swatch {
+				display: inline-block;
+				width: 10px;
+				height: 10px;
+				border-radius: 3px;
+				margin-right: 6px;
+				vertical-align: middle;
+			}
+
+			.bar-legend .swatch-acv {
+				background: var(--good);
+			}
+
+			.bar-legend .swatch-deprec {
+				background: var(--warn);
+			}
+
 			@media (max-width: 560px) {
 				.bar-row {
 					grid-template-columns: 1fr;
 					gap: 4px;
-					margin-bottom: 16px;
+					margin-bottom: 4px;
 				}
 				.bar-value {
 					text-align: left;
+				}
+				.bar-detail {
+					grid-column: auto;
+					margin: 0 0 16px;
 				}
 			}
 
@@ -190,15 +283,21 @@
 				cursor: pointer;
 				padding: 14px 16px;
 				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				gap: 12px;
+				flex-direction: column;
+				gap: 4px;
 				background: rgba(255, 255, 255, 0.03);
 				font-weight: 600;
 			}
 
 			details.room summary::-webkit-details-marker {
 				display: none;
+			}
+
+			.room-summary-top {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 12px;
 			}
 
 			details.room summary .chevron {
@@ -215,6 +314,34 @@
 				color: var(--accent);
 				font-weight: 600;
 				white-space: nowrap;
+			}
+
+			.room-summary-sub {
+				padding-left: 20px;
+				font-size: 0.76rem;
+				font-weight: 400;
+				color: var(--text-muted);
+			}
+
+			.room-summary-sub .v-op {
+				color: var(--text);
+				font-weight: 600;
+			}
+
+			.room-summary-sub .v-deprec {
+				color: var(--warn);
+				font-weight: 600;
+			}
+
+			.room-summary-sub .v-acv {
+				color: var(--good);
+				font-weight: 600;
+			}
+
+			@media (max-width: 480px) {
+				.room-summary-sub {
+					padding-left: 0;
+				}
 			}
 
 			.room-body {
@@ -314,9 +441,29 @@
 					text-align: left;
 				}
 				table.line-items tfoot tr {
+					display: block;
+					padding-top: 4px;
+				}
+				table.line-items tfoot td {
 					display: flex;
 					justify-content: space-between;
-					padding-top: 6px;
+					gap: 10px;
+					padding: 3px 0;
+					border-top: none;
+				}
+				table.line-items tfoot td:first-child {
+					display: block;
+					text-align: left;
+					margin-bottom: 2px;
+				}
+				table.line-items tfoot td:not(:first-child)::before {
+					content: attr(data-label);
+					color: var(--text-muted);
+					font-weight: 400;
+					text-align: left;
+				}
+				table.line-items tfoot td.qty-col {
+					display: none;
 				}
 			}
 
@@ -333,11 +480,18 @@
 				padding: 8px 14px;
 				font-size: 0.85rem;
 				display: flex;
+				flex-wrap: wrap;
+				align-items: baseline;
 				gap: 8px;
 			}
 
 			.labor-min-list .pill b {
 				color: var(--accent);
+			}
+
+			.labor-min-list .pill-sub {
+				color: var(--text-muted);
+				font-size: 0.78rem;
 			}
 
 			/* --- image galleries --- */
@@ -471,79 +625,185 @@
 			</section>
 
 			<section class="section">
+				<h2>Understanding the Numbers</h2>
+				<p class="section-note">What RCV, O&amp;P, depreciation, and ACV mean, and how they relate</p>
+				<div class="glossary">
+					<div class="glossary-item">
+						<div class="term">RCV <span class="term-full">Replacement Cost Value</span></div>
+						<div class="def">What it costs today to actually complete the repair &mdash; current material prices plus labor &mdash; with no deduction for the age or condition of what's being replaced.</div>
+					</div>
+					<div class="glossary-item">
+						<div class="term">O&amp;P <span class="term-full">Overhead &amp; Profit</span></div>
+						<div class="def">A 20% markup (10% overhead + 10% profit) built into each line item to cover a general contractor's cost of running the job &mdash; scheduling, permits, supervising subs &mdash; plus their profit margin.</div>
+					</div>
+					<div class="glossary-item">
+						<div class="term">Deprec. <span class="term-full">Depreciation</span></div>
+						<div class="def">A reduction applied to older or worn materials, like the existing paint, to reflect their age and condition right before the loss. Newer materials depreciate less.</div>
+					</div>
+					<div class="glossary-item">
+						<div class="term">ACV <span class="term-full">Actual Cash Value</span></div>
+						<div class="def">What the damaged property was actually worth right before the loss. This is the amount typically paid out up front.</div>
+					</div>
+				</div>
+				<p class="deprec-note"><strong>RCV &minus; Depreciation = ACV.</strong> Because this policy has replacement-cost coverage, that depreciation isn't lost &mdash; it's "recoverable." Once repairs are complete and proof is submitted, it gets paid out too, which is where the "Net Claim if Recovered" figure above comes from.</p>
+			</section>
+
+			<section class="section">
 				<h2>Cost by Trade</h2>
-				<p class="section-note">Replacement cost value grouped by category of work</p>
+				<p class="section-note">RCV grouped by category of work &mdash; each bar splits into what's paid now (ACV) vs. what's held back (depreciation)</p>
+				<div class="bar-legend">
+					<span><span class="swatch swatch-acv"></span>ACV &mdash; paid now</span>
+					<span><span class="swatch swatch-deprec"></span>Depreciation &mdash; recoverable later</span>
+				</div>
 
 				<div class="bar-row">
 					<div class="bar-label">Painting</div>
-					<div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
+					<div class="bar-track">
+						<div class="bar-fill-group" style="width: 100%">
+							<div class="bar-seg-acv" style="width: 34.8%"></div>
+							<div class="bar-seg-deprec" style="width: 65.2%"></div>
+						</div>
+					</div>
 					<div class="bar-value">$3,252.43</div>
 				</div>
+				<div class="bar-detail">Deprec. <span class="v-deprec">$2,122.03</span> &middot; ACV <span class="v-acv">$1,130.40</span></div>
+
 				<div class="bar-row">
 					<div class="bar-label">Framing &amp; Carpentry</div>
-					<div class="bar-track"><div class="bar-fill" style="width: 32.6%"></div></div>
+					<div class="bar-track">
+						<div class="bar-fill-group" style="width: 32.6%">
+							<div class="bar-seg-acv" style="width: 97.5%"></div>
+							<div class="bar-seg-deprec" style="width: 2.5%"></div>
+						</div>
+					</div>
 					<div class="bar-value">$1,060.80</div>
 				</div>
+				<div class="bar-detail">Deprec. <span class="v-deprec">$26.08</span> &middot; ACV <span class="v-acv">$1,034.72</span></div>
+
 				<div class="bar-row">
 					<div class="bar-label">Drywall</div>
-					<div class="bar-track"><div class="bar-fill" style="width: 14.5%"></div></div>
+					<div class="bar-track">
+						<div class="bar-fill-group" style="width: 14.5%">
+							<div class="bar-seg-acv" style="width: 97.5%"></div>
+							<div class="bar-seg-deprec" style="width: 2.5%"></div>
+						</div>
+					</div>
 					<div class="bar-value">$470.86</div>
 				</div>
+				<div class="bar-detail">Deprec. <span class="v-deprec">$11.92</span> &middot; ACV <span class="v-acv">$458.94</span></div>
+
 				<div class="bar-row">
 					<div class="bar-label">Content Manipulation</div>
-					<div class="bar-track"><div class="bar-fill" style="width: 12.1%"></div></div>
+					<div class="bar-track">
+						<div class="bar-fill-group" style="width: 12.1%">
+							<div class="bar-seg-acv" style="width: 100%"></div>
+						</div>
+					</div>
 					<div class="bar-value">$392.06</div>
 				</div>
+				<div class="bar-detail">Deprec. <span class="v-deprec">$0.00</span> &middot; ACV <span class="v-acv">$392.06</span></div>
+
 				<div class="bar-row">
 					<div class="bar-label">Cleaning</div>
-					<div class="bar-track"><div class="bar-fill" style="width: 10.4%"></div></div>
+					<div class="bar-track">
+						<div class="bar-fill-group" style="width: 10.4%">
+							<div class="bar-seg-acv" style="width: 100%"></div>
+						</div>
+					</div>
 					<div class="bar-value">$338.45</div>
 				</div>
+				<div class="bar-detail">Deprec. <span class="v-deprec">$0.00</span> &middot; ACV <span class="v-acv">$338.45</span></div>
+
 				<div class="bar-row">
 					<div class="bar-label">Siding</div>
-					<div class="bar-track"><div class="bar-fill" style="width: 10.3%"></div></div>
+					<div class="bar-track">
+						<div class="bar-fill-group" style="width: 10.3%">
+							<div class="bar-seg-acv" style="width: 100%"></div>
+						</div>
+					</div>
 					<div class="bar-value">$335.28</div>
 				</div>
+				<div class="bar-detail">Deprec. <span class="v-deprec">$0.00</span> &middot; ACV <span class="v-acv">$335.28</span></div>
+
 				<div class="bar-row">
 					<div class="bar-label">Doors</div>
-					<div class="bar-track"><div class="bar-fill" style="width: 9.2%"></div></div>
+					<div class="bar-track">
+						<div class="bar-fill-group" style="width: 9.2%">
+							<div class="bar-seg-acv" style="width: 100%"></div>
+						</div>
+					</div>
 					<div class="bar-value">$298.15</div>
 				</div>
+				<div class="bar-detail">Deprec. <span class="v-deprec">$0.00</span> &middot; ACV <span class="v-acv">$298.15</span></div>
+
 				<div class="bar-row">
 					<div class="bar-label">Demolition</div>
-					<div class="bar-track"><div class="bar-fill" style="width: 9.1%"></div></div>
+					<div class="bar-track">
+						<div class="bar-fill-group" style="width: 9.1%">
+							<div class="bar-seg-acv" style="width: 100%"></div>
+						</div>
+					</div>
 					<div class="bar-value">$296.36</div>
 				</div>
+				<div class="bar-detail">Deprec. <span class="v-deprec">$0.00</span> &middot; ACV <span class="v-acv">$296.36</span></div>
+
 				<div class="bar-row">
 					<div class="bar-label">Scaffolding</div>
-					<div class="bar-track"><div class="bar-fill" style="width: 8.4%"></div></div>
+					<div class="bar-track">
+						<div class="bar-fill-group" style="width: 8.4%">
+							<div class="bar-seg-acv" style="width: 100%"></div>
+						</div>
+					</div>
 					<div class="bar-value">$273.30</div>
 				</div>
+				<div class="bar-detail">Deprec. <span class="v-deprec">$0.00</span> &middot; ACV <span class="v-acv">$273.30</span></div>
+
 				<div class="bar-row">
 					<div class="bar-label">Light Fixtures</div>
-					<div class="bar-track"><div class="bar-fill" style="width: 2.7%"></div></div>
+					<div class="bar-track">
+						<div class="bar-fill-group" style="width: 2.7%">
+							<div class="bar-seg-acv" style="width: 100%"></div>
+						</div>
+					</div>
 					<div class="bar-value">$87.48</div>
 				</div>
+				<div class="bar-detail">Deprec. <span class="v-deprec">$0.00</span> &middot; ACV <span class="v-acv">$87.48</span></div>
+
 				<div class="bar-row">
 					<div class="bar-label">Trim / Finish Carpentry</div>
-					<div class="bar-track"><div class="bar-fill" style="width: 1.4%"></div></div>
+					<div class="bar-track">
+						<div class="bar-fill-group" style="width: 1.4%">
+							<div class="bar-seg-acv" style="width: 100%"></div>
+						</div>
+					</div>
 					<div class="bar-value">$45.05</div>
 				</div>
+				<div class="bar-detail">Deprec. <span class="v-deprec">$0.00</span> &middot; ACV <span class="v-acv">$45.05</span></div>
+
 				<div class="bar-row">
 					<div class="bar-label">Insulation</div>
-					<div class="bar-track"><div class="bar-fill" style="width: 0.7%"></div></div>
+					<div class="bar-track">
+						<div class="bar-fill-group" style="width: 0.7%">
+							<div class="bar-seg-acv" style="width: 90.0%"></div>
+							<div class="bar-seg-deprec" style="width: 10.0%"></div>
+						</div>
+					</div>
 					<div class="bar-value">$24.20</div>
 				</div>
+				<div class="bar-detail">Deprec. <span class="v-deprec">$2.42</span> &middot; ACV <span class="v-acv">$21.78</span></div>
 			</section>
 
 			<section class="section">
 				<h2>Scope of Work by Area</h2>
-				<p class="section-note">Tap an area to see the full line-item breakdown. Cost shown is replacement cost (before depreciation).</p>
+				<p class="section-note">Tap an area to see the full line-item breakdown &mdash; O&amp;P, RCV, depreciation, and ACV for each item.</p>
 
 				<details class="room" open>
 					<summary>
-						<span><span class="chevron">&#9656;</span> Exterior &mdash; Right Elevation</span>
-						<span class="room-total">$2,137.37</span>
+						<span class="room-summary-top">
+							<span><span class="chevron">&#9656;</span> Exterior &mdash; Right Elevation</span>
+							<span class="room-total">$2,137.37</span>
+						</span>
+						<span class="room-summary-sub">O&amp;P <span class="v-op">$356.24</span> &middot; Deprec. <span class="v-deprec">$32.19</span> &middot; ACV <span class="v-acv">$2,105.18</span></span>
 					</summary>
 					<div class="room-body">
 						<table class="line-items">
@@ -551,53 +811,80 @@
 								<tr>
 									<th>Item</th>
 									<th>Qty</th>
-									<th>Cost</th>
+									<th>O&amp;P</th>
+									<th>RCV</th>
+									<th>Deprec.</th>
+									<th>ACV</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td data-label="Item">Scaffolding setup &amp; take down</td>
 									<td data-label="Qty">2 hrs</td>
-									<td data-label="Cost">$128.24</td>
+									<td data-label="O&amp;P">$21.38</td>
+									<td data-label="RCV">$128.24</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$128.24</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Scaffold rental<span class="item-note">3 sections for 2 days</span></td>
 									<td data-label="Qty">6 days</td>
-									<td data-label="Cost">$199.72</td>
+									<td data-label="O&amp;P">$33.28</td>
+									<td data-label="RCV">$199.72</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$199.72</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Detach &amp; reset exterior light fixture</td>
 									<td data-label="Qty">1</td>
-									<td data-label="Cost">$104.98</td>
+									<td data-label="O&amp;P">$17.50</td>
+									<td data-label="RCV">$104.98</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$104.98</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Detach &amp; reset vinyl siding</td>
 									<td data-label="Qty">100 sq ft</td>
-									<td data-label="Cost">$325.42</td>
+									<td data-label="O&amp;P">$54.24</td>
+									<td data-label="RCV">$325.42</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$325.42</td>
 								</tr>
 								<tr>
 									<td data-label="Item">
 										Remove &amp; replace engineered rim joist (1-1/8&quot; x 14&quot;)<span class="item-note">Repairs the section of rim joist damaged by the loss</span>
 									</td>
 									<td data-label="Qty">10 ln ft</td>
-									<td data-label="Cost">$63.25</td>
+									<td data-label="O&amp;P">$10.54</td>
+									<td data-label="RCV">$63.25</td>
+									<td data-label="Deprec.">$5.48</td>
+									<td data-label="ACV">$57.77</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Remove &amp; replace 1/2&quot; CDX plywood sheathing</td>
 									<td data-label="Qty">100 sq ft</td>
-									<td data-label="Cost">$355.76</td>
+									<td data-label="O&amp;P">$59.30</td>
+									<td data-label="RCV">$355.76</td>
+									<td data-label="Deprec.">$26.71</td>
+									<td data-label="ACV">$329.05</td>
 								</tr>
 								<tr>
 									<td data-label="Item">General framing carpenter labor<span class="item-note">Extra labor to repair rot-damaged wall framing and rim joist</span></td>
 									<td data-label="Qty">8 hrs</td>
-									<td data-label="Cost">$960.00</td>
+									<td data-label="O&amp;P">$160.00</td>
+									<td data-label="RCV">$960.00</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$960.00</td>
 								</tr>
 							</tbody>
 							<tfoot>
 								<tr>
 									<td>Subtotal</td>
-									<td></td>
-									<td>$2,137.37</td>
+									<td class="qty-col"></td>
+									<td data-label="O&amp;P">$356.24</td>
+									<td data-label="RCV">$2,137.37</td>
+									<td data-label="Deprec.">$32.19</td>
+									<td data-label="ACV">$2,105.18</td>
 								</tr>
 							</tfoot>
 						</table>
@@ -606,8 +893,11 @@
 
 				<details class="room">
 					<summary>
-						<span><span class="chevron">&#9656;</span> Living Room</span>
-						<span class="room-total">$1,860.08</span>
+						<span class="room-summary-top">
+							<span><span class="chevron">&#9656;</span> Living Room</span>
+							<span class="room-total">$1,860.08</span>
+						</span>
+						<span class="room-summary-sub">O&amp;P <span class="v-op">$308.74</span> &middot; Deprec. <span class="v-deprec">$938.65</span> &middot; ACV <span class="v-acv">$921.43</span></span>
 					</summary>
 					<div class="room-body">
 						<table class="line-items">
@@ -615,61 +905,94 @@
 								<tr>
 									<th>Item</th>
 									<th>Qty</th>
-									<th>Cost</th>
+									<th>O&amp;P</th>
+									<th>RCV</th>
+									<th>Deprec.</th>
+									<th>ACV</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td data-label="Item">Move contents out, then reset (large room)</td>
 									<td data-label="Qty">1</td>
-									<td data-label="Cost">$141.09</td>
+									<td data-label="O&amp;P">$23.52</td>
+									<td data-label="RCV">$141.09</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$141.09</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Floor protection &mdash; plastic &amp; tape (10 mil)</td>
 									<td data-label="Qty">301.6 sq ft</td>
-									<td data-label="Cost">$165.47</td>
+									<td data-label="O&amp;P">$27.58</td>
+									<td data-label="RCV">$165.47</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$165.47</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Remove &amp; replace 4&quot; R13 batt insulation</td>
 									<td data-label="Qty">20 sq ft</td>
-									<td data-label="Cost">$37.92</td>
+									<td data-label="O&amp;P">$6.32</td>
+									<td data-label="RCV">$37.92</td>
+									<td data-label="Deprec.">$3.02</td>
+									<td data-label="ACV">$34.90</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Remove &amp; replace 1/2&quot; drywall, hung, taped, floated, ready for paint</td>
 									<td data-label="Qty">20 sq ft</td>
-									<td data-label="Cost">$85.60</td>
+									<td data-label="O&amp;P">$14.26</td>
+									<td data-label="RCV">$85.60</td>
+									<td data-label="Deprec.">$7.27</td>
+									<td data-label="ACV">$78.33</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Seal patch with PVA primer &mdash; one coat</td>
 									<td data-label="Qty">20 sq ft</td>
-									<td data-label="Cost">$24.57</td>
+									<td data-label="O&amp;P">$4.10</td>
+									<td data-label="RCV">$24.57</td>
+									<td data-label="Deprec.">$18.43</td>
+									<td data-label="ACV">$6.14</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Paint walls &mdash; two coats<span class="item-note">Floor to ceiling, corner to corner for a proper blend</span></td>
 									<td data-label="Qty">573 sq ft</td>
-									<td data-label="Cost">$1,147.75</td>
+									<td data-label="O&amp;P">$191.30</td>
+									<td data-label="RCV">$1,147.75</td>
+									<td data-label="Deprec.">$860.82</td>
+									<td data-label="ACV">$286.93</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Detach &amp; reset 2 1/4&quot; door/window casing</td>
 									<td data-label="Qty">17 ln ft</td>
-									<td data-label="Cost">$54.10</td>
+									<td data-label="O&amp;P">$9.02</td>
+									<td data-label="RCV">$54.10</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$54.10</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Paint door/window trim &amp; jamb &mdash; two coats</td>
 									<td data-label="Qty">1</td>
-									<td data-label="Cost">$65.47</td>
+									<td data-label="O&amp;P">$10.92</td>
+									<td data-label="RCV">$65.47</td>
+									<td data-label="Deprec.">$49.11</td>
+									<td data-label="ACV">$16.36</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Final construction cleaning</td>
 									<td data-label="Qty">301.6 sq ft</td>
-									<td data-label="Cost">$138.11</td>
+									<td data-label="O&amp;P">$21.72</td>
+									<td data-label="RCV">$138.11</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$138.11</td>
 								</tr>
 							</tbody>
 							<tfoot>
 								<tr>
 									<td>Subtotal</td>
-									<td></td>
-									<td>$1,860.08</td>
+									<td class="qty-col"></td>
+									<td data-label="O&amp;P">$308.74</td>
+									<td data-label="RCV">$1,860.08</td>
+									<td data-label="Deprec.">$938.65</td>
+									<td data-label="ACV">$921.43</td>
 								</tr>
 							</tfoot>
 						</table>
@@ -679,8 +1002,11 @@
 
 				<details class="room">
 					<summary>
-						<span><span class="chevron">&#9656;</span> Dining Room</span>
-						<span class="room-total">$838.77</span>
+						<span class="room-summary-top">
+							<span><span class="chevron">&#9656;</span> Dining Room</span>
+							<span class="room-total">$838.77</span>
+						</span>
+						<span class="room-summary-sub">O&amp;P <span class="v-op">$139.28</span> &middot; Deprec. <span class="v-deprec">$467.00</span> &middot; ACV <span class="v-acv">$371.77</span></span>
 					</summary>
 					<div class="room-body">
 						<table class="line-items">
@@ -688,36 +1014,54 @@
 								<tr>
 									<th>Item</th>
 									<th>Qty</th>
-									<th>Cost</th>
+									<th>O&amp;P</th>
+									<th>RCV</th>
+									<th>Deprec.</th>
+									<th>ACV</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td data-label="Item">Move contents out, then reset</td>
 									<td data-label="Qty">1</td>
-									<td data-label="Cost">$94.16</td>
+									<td data-label="O&amp;P">$15.70</td>
+									<td data-label="RCV">$94.16</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$94.16</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Floor protection &mdash; plastic &amp; tape (10 mil)</td>
 									<td data-label="Qty">121.2 sq ft</td>
-									<td data-label="Cost">$66.48</td>
+									<td data-label="O&amp;P">$11.08</td>
+									<td data-label="RCV">$66.48</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$66.48</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Paint walls &mdash; two coats<span class="item-note">Continuous walls run throughout the floor, so blending extends here</span></td>
 									<td data-label="Qty">310.9 sq ft</td>
-									<td data-label="Cost">$622.65</td>
+									<td data-label="O&amp;P">$103.78</td>
+									<td data-label="RCV">$622.65</td>
+									<td data-label="Deprec.">$467.00</td>
+									<td data-label="ACV">$155.65</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Final construction cleaning</td>
 									<td data-label="Qty">121.2 sq ft</td>
-									<td data-label="Cost">$55.48</td>
+									<td data-label="O&amp;P">$8.72</td>
+									<td data-label="RCV">$55.48</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$55.48</td>
 								</tr>
 							</tbody>
 							<tfoot>
 								<tr>
 									<td>Subtotal</td>
-									<td></td>
-									<td>$838.77</td>
+									<td class="qty-col"></td>
+									<td data-label="O&amp;P">$139.28</td>
+									<td data-label="RCV">$838.77</td>
+									<td data-label="Deprec.">$467.00</td>
+									<td data-label="ACV">$371.77</td>
 								</tr>
 							</tfoot>
 						</table>
@@ -727,8 +1071,11 @@
 
 				<details class="room">
 					<summary>
-						<span><span class="chevron">&#9656;</span> Kitchen</span>
-						<span class="room-total">$1,033.64</span>
+						<span class="room-summary-top">
+							<span><span class="chevron">&#9656;</span> Kitchen</span>
+							<span class="room-total">$1,033.64</span>
+						</span>
+						<span class="room-summary-sub">O&amp;P <span class="v-op">$171.66</span> &middot; Deprec. <span class="v-deprec">$597.59</span> &middot; ACV <span class="v-acv">$436.05</span></span>
 					</summary>
 					<div class="room-body">
 						<table class="line-items">
@@ -736,36 +1083,54 @@
 								<tr>
 									<th>Item</th>
 									<th>Qty</th>
-									<th>Cost</th>
+									<th>O&amp;P</th>
+									<th>RCV</th>
+									<th>Deprec.</th>
+									<th>ACV</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td data-label="Item">Move contents out, then reset</td>
 									<td data-label="Qty">1</td>
-									<td data-label="Cost">$94.16</td>
+									<td data-label="O&amp;P">$15.70</td>
+									<td data-label="RCV">$94.16</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$94.16</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Floor protection &mdash; plastic &amp; tape (10 mil)</td>
 									<td data-label="Qty">141.8 sq ft</td>
-									<td data-label="Cost">$77.78</td>
+									<td data-label="O&amp;P">$12.96</td>
+									<td data-label="RCV">$77.78</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$77.78</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Paint walls &mdash; two coats<span class="item-note">Continuous walls run throughout the floor, so blending extends here</span></td>
 									<td data-label="Qty">397.8 sq ft</td>
-									<td data-label="Cost">$796.79</td>
+									<td data-label="O&amp;P">$132.80</td>
+									<td data-label="RCV">$796.79</td>
+									<td data-label="Deprec.">$597.59</td>
+									<td data-label="ACV">$199.20</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Final construction cleaning</td>
 									<td data-label="Qty">141.8 sq ft</td>
-									<td data-label="Cost">$64.91</td>
+									<td data-label="O&amp;P">$10.20</td>
+									<td data-label="RCV">$64.91</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$64.91</td>
 								</tr>
 							</tbody>
 							<tfoot>
 								<tr>
 									<td>Subtotal</td>
-									<td></td>
-									<td>$1,033.64</td>
+									<td class="qty-col"></td>
+									<td data-label="O&amp;P">$171.66</td>
+									<td data-label="RCV">$1,033.64</td>
+									<td data-label="Deprec.">$597.59</td>
+									<td data-label="ACV">$436.05</td>
 								</tr>
 							</tfoot>
 						</table>
@@ -775,8 +1140,11 @@
 
 				<details class="room">
 					<summary>
-						<span><span class="chevron">&#9656;</span> Garage</span>
-						<span class="room-total">$1,739.38</span>
+						<span class="room-summary-top">
+							<span><span class="chevron">&#9656;</span> Garage</span>
+							<span class="room-total">$1,739.38</span>
+						</span>
+						<span class="room-summary-sub">O&amp;P <span class="v-op">$288.28</span> &middot; Deprec. <span class="v-deprec">$589.93</span> &middot; ACV <span class="v-acv">$1,149.45</span></span>
 					</summary>
 					<div class="room-body">
 						<table class="line-items">
@@ -784,51 +1152,78 @@
 								<tr>
 									<th>Item</th>
 									<th>Qty</th>
-									<th>Cost</th>
+									<th>O&amp;P</th>
+									<th>RCV</th>
+									<th>Deprec.</th>
+									<th>ACV</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td data-label="Item">Move contents out, then reset (large room)</td>
 									<td data-label="Qty">1</td>
-									<td data-label="Cost">$141.09</td>
+									<td data-label="O&amp;P">$23.52</td>
+									<td data-label="RCV">$141.09</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$141.09</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Floor protection &mdash; plastic &amp; tape (10 mil)</td>
 									<td data-label="Qty">375.6 sq ft</td>
-									<td data-label="Cost">$206.05</td>
+									<td data-label="O&amp;P">$34.34</td>
+									<td data-label="RCV">$206.05</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$206.05</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Detach &amp; reset garage door opener</td>
 									<td data-label="Qty">1</td>
-									<td data-label="Cost">$357.79</td>
+									<td data-label="O&amp;P">$59.64</td>
+									<td data-label="RCV">$357.79</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$357.79</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Remove &amp; replace 5/8&quot; drywall patch, hung, taped, floated, ready for paint</td>
 									<td data-label="Qty">20 sq ft</td>
-									<td data-label="Cost">$85.60</td>
+									<td data-label="O&amp;P">$14.26</td>
+									<td data-label="RCV">$85.60</td>
+									<td data-label="Deprec.">$7.27</td>
+									<td data-label="ACV">$78.33</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Seal patch with PVA primer &mdash; one coat</td>
 									<td data-label="Qty">20 sq ft</td>
-									<td data-label="Cost">$24.57</td>
+									<td data-label="O&amp;P">$4.10</td>
+									<td data-label="RCV">$24.57</td>
+									<td data-label="Deprec.">$18.43</td>
+									<td data-label="ACV">$6.14</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Paint ceiling &mdash; two coats<span class="item-note">Right side of the garage</span></td>
 									<td data-label="Qty">375.6 sq ft</td>
-									<td data-label="Cost">$752.30</td>
+									<td data-label="O&amp;P">$125.38</td>
+									<td data-label="RCV">$752.30</td>
+									<td data-label="Deprec.">$564.23</td>
+									<td data-label="ACV">$188.07</td>
 								</tr>
 								<tr>
 									<td data-label="Item">Final construction cleaning</td>
 									<td data-label="Qty">375.6 sq ft</td>
-									<td data-label="Cost">$171.98</td>
+									<td data-label="O&amp;P">$27.04</td>
+									<td data-label="RCV">$171.98</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$171.98</td>
 								</tr>
 							</tbody>
 							<tfoot>
 								<tr>
 									<td>Subtotal</td>
-									<td></td>
-									<td>$1,739.38</td>
+									<td class="qty-col"></td>
+									<td data-label="O&amp;P">$288.28</td>
+									<td data-label="RCV">$1,739.38</td>
+									<td data-label="Deprec.">$589.93</td>
+									<td data-label="ACV">$1,149.45</td>
 								</tr>
 							</tfoot>
 						</table>
@@ -838,8 +1233,11 @@
 
 				<details class="room">
 					<summary>
-						<span><span class="chevron">&#9656;</span> Debris Removal</span>
-						<span class="room-total">$224.72</span>
+						<span class="room-summary-top">
+							<span><span class="chevron">&#9656;</span> Debris Removal</span>
+							<span class="room-total">$224.72</span>
+						</span>
+						<span class="room-summary-sub">O&amp;P <span class="v-op">$37.46</span> &middot; Deprec. <span class="v-deprec">$0.00</span> &middot; ACV <span class="v-acv">$224.72</span></span>
 					</summary>
 					<div class="room-body">
 						<table class="line-items">
@@ -847,21 +1245,30 @@
 								<tr>
 									<th>Item</th>
 									<th>Qty</th>
-									<th>Cost</th>
+									<th>O&amp;P</th>
+									<th>RCV</th>
+									<th>Deprec.</th>
+									<th>ACV</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<td data-label="Item">Haul debris by pickup truck load<span class="item-note">Includes dump fees</span></td>
 									<td data-label="Qty">1</td>
-									<td data-label="Cost">$224.72</td>
+									<td data-label="O&amp;P">$37.46</td>
+									<td data-label="RCV">$224.72</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$224.72</td>
 								</tr>
 							</tbody>
 							<tfoot>
 								<tr>
 									<td>Subtotal</td>
-									<td></td>
-									<td>$224.72</td>
+									<td class="qty-col"></td>
+									<td data-label="O&amp;P">$37.46</td>
+									<td data-label="RCV">$224.72</td>
+									<td data-label="Deprec.">$0.00</td>
+									<td data-label="ACV">$224.72</td>
 								</tr>
 							</tfoot>
 						</table>
@@ -869,8 +1276,8 @@
 				</details>
 
 				<div class="labor-min-list" style="margin-top: 14px">
-					<div class="pill">Siding labor minimum <b>$77.14</b></div>
-					<div class="pill">Drywall labor minimum <b>$422.00</b></div>
+					<div class="pill">Siding labor minimum <b>$77.14</b> <span class="pill-sub">O&amp;P $12.86</span></div>
+					<div class="pill">Drywall labor minimum <b>$422.00</b> <span class="pill-sub">O&amp;P $70.34</span></div>
 				</div>
 			</section>
 
