@@ -34,7 +34,7 @@ export function TimelineEntry({ icon: Icon, current, title, href, meta, dateLabe
 			<div className={styles.dateAside}>{dateLabel}</div>
 			<div className={styles.markerCol}>
 				<div className={current ? `${styles.marker} ${styles.markerCurrent}` : styles.marker}>
-					<Icon width={20} height={20} />
+					<Icon width={30} height={30} />
 				</div>
 				<div className={styles.connector} />
 			</div>
