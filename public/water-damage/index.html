@@ -221,6 +221,18 @@
 				padding: 4px 16px 16px;
 			}
 
+			.room-plan {
+				display: block;
+				max-width: 260px;
+				width: 100%;
+				margin-top: 16px;
+				border: 1px solid var(--panel-border);
+				border-radius: 8px;
+				background: #fff;
+				padding: 8px;
+				cursor: zoom-in;
+			}
+
 			table.line-items {
 				width: 100%;
 				border-collapse: collapse;
@@ -452,7 +464,10 @@
 						<div class="value">$6,833.10</div>
 					</div>
 				</div>
-				<p class="deprec-note">This estimate holds back recoverable depreciation until repairs are complete. Once the work above is finished, submitting proof of completion unlocks the remaining $2,625.36, bringing the total payout to $6,833.10.</p>
+				<p class="deprec-note">
+					This estimate holds back recoverable depreciation until repairs are complete. Once the work above is finished, submitting proof of completion unlocks the remaining $2,625.36,
+					bringing the total payout to $6,833.10.
+				</p>
 			</section>
 
 			<section class="section">
@@ -561,7 +576,9 @@
 									<td data-label="Cost">$325.42</td>
 								</tr>
 								<tr>
-									<td data-label="Item">Remove &amp; replace engineered rim joist (1-1/8&quot; x 14&quot;)<span class="item-note">Repairs the section of rim joist damaged by the loss</span></td>
+									<td data-label="Item">
+										Remove &amp; replace engineered rim joist (1-1/8&quot; x 14&quot;)<span class="item-note">Repairs the section of rim joist damaged by the loss</span>
+									</td>
 									<td data-label="Qty">10 ln ft</td>
 									<td data-label="Cost">$63.25</td>
 								</tr>
@@ -656,6 +673,7 @@
 								</tr>
 							</tfoot>
 						</table>
+						<img class="room-plan" src="room-living-room.png" alt="Living Room floor plan" loading="lazy" onclick="openLightbox('room-living-room.png')" />
 					</div>
 				</details>
 
@@ -703,6 +721,7 @@
 								</tr>
 							</tfoot>
 						</table>
+						<img class="room-plan" src="room-dining-room.png" alt="Dining Room floor plan" loading="lazy" onclick="openLightbox('room-dining-room.png')" />
 					</div>
 				</details>
 
@@ -750,6 +769,7 @@
 								</tr>
 							</tfoot>
 						</table>
+						<img class="room-plan" src="room-kitchen.png" alt="Kitchen floor plan" loading="lazy" onclick="openLightbox('room-kitchen.png')" />
 					</div>
 				</details>
 
@@ -812,6 +832,7 @@
 								</tr>
 							</tfoot>
 						</table>
+						<img class="room-plan" src="room-garage.png" alt="Garage floor plan" loading="lazy" onclick="openLightbox('room-garage.png')" />
 					</div>
 				</details>
 
