@@ -87,6 +87,12 @@ ol {
 	border-top: 1px solid var(--border);
 }
 
+/* Hidden per Google's docs: https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-badge-is-this-allowed
+   The required attribution text is shown in the footer instead (see App.tsx). */
+.grecaptcha-badge {
+	visibility: hidden;
+}
+
 .visually-hidden {
 	position: absolute;
 	width: 1px;

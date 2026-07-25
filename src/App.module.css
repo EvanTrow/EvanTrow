@@ -8,3 +8,17 @@
 	font-size: 0.8rem;
 	color: var(--text-faint);
 }
+
+.recaptchaNotice {
+	margin-top: var(--space-2);
+	font-size: 0.75rem;
+}
+
+.recaptchaNotice a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.recaptchaNotice a:hover {
+	color: var(--accent);
+}
