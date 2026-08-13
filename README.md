@@ -1,6 +1,6 @@
 ### Hi there 👋
 
-See my resume [here](https://github.com/evantrow/) 👀
+See my resume [here](https://trowbridge.tech) 👀
 
 <!--
 **EvanTrow/EvanTrow** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
