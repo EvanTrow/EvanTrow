@@ -29,6 +29,7 @@
 
     --c-evan:#6fa8ff;
     --c-jacob:#e2984f;
+    --c-giff:#7dd39a;
 
     --radius-lg:16px;
     --radius-md:12px;
@@ -288,6 +289,8 @@
   .attendee-evan .dot{background:var(--c-evan);}
   .attendee-jacob{ color:var(--c-jacob); background:rgba(226,152,79,0.12); border-color:rgba(226,152,79,0.3); }
   .attendee-jacob .dot{background:var(--c-jacob);}
+  .attendee-giff{ color:var(--c-giff); background:rgba(125,211,154,0.12); border-color:rgba(125,211,154,0.3); }
+  .attendee-giff .dot{background:var(--c-giff);}
 
   /* group wrapper: parallel tracks at the same time */
   .group{
@@ -380,6 +383,7 @@
 <div class="legend">
   <div class="legend-item"><span class="legend-dot" style="background:var(--c-evan)"></span>Evan</div>
   <div class="legend-item"><span class="legend-dot" style="background:var(--c-jacob)"></span>Jacob</div>
+  <div class="legend-item"><span class="legend-dot" style="background:var(--c-giff)"></span>Giff</div>
   <div class="legend-sep"></div>
   <div class="legend-item"><span class="legend-dot" style="background:var(--c-keynote)"></span>Keynote</div>
   <div class="legend-item"><span class="legend-dot" style="background:var(--c-workshop)"></span>Workshop</div>
@@ -402,100 +406,104 @@
 <script>
 // ---------------------------------------------------------------
 // DATA
-// people: array of 'evan' and/or 'jacob' — who is attending this item
+// people: array of 'evan', 'jacob', and/or 'giff' — who is attending this item
 // ---------------------------------------------------------------
 const DAYS = [
   {
     id:'day1', num:'01', title:'Monday, August 17', sub:'Arrival & Welcome',
     sessions:[
-      {start:'2026-08-17T12:00:00-06:00', end:'2026-08-17T19:30:00-06:00', title:'Ascent Check-In Open', type:'logistics', people:['evan','jacob']},
-      {start:'2026-08-17T17:30:00-06:00', end:'2026-08-17T19:30:00-06:00', title:'Welcome Reception', type:'reception', people:['evan','jacob']},
+      {start:'2026-08-17T12:00:00-06:00', end:'2026-08-17T19:30:00-06:00', title:'Ascent Check-In Open', type:'logistics', people:['evan','jacob','giff']},
+      {start:'2026-08-17T17:30:00-06:00', end:'2026-08-17T19:30:00-06:00', title:'Welcome Reception', type:'reception', people:['evan','jacob','giff']},
     ]
   },
   {
     id:'day2', num:'02', title:'Tuesday, August 18', sub:'Diagnostics, Integrations & AI',
     sessions:[
-      {start:'2026-08-18T07:30:00-06:00', end:'2026-08-18T08:30:00-06:00', title:'Breakfast', type:'meal', people:['evan','jacob']},
-      {start:'2026-08-18T08:30:00-06:00', end:'2026-08-18T09:45:00-06:00', title:'Opening Keynote', type:'keynote', people:['evan','jacob']},
-      {start:'2026-08-18T09:45:00-06:00', end:'2026-08-18T10:00:00-06:00', title:'Break', type:'break', people:['evan','jacob']},
+      {start:'2026-08-18T07:30:00-06:00', end:'2026-08-18T08:30:00-06:00', title:'Breakfast', type:'meal', people:['evan','jacob','giff']},
+      {start:'2026-08-18T08:30:00-06:00', end:'2026-08-18T09:45:00-06:00', title:'Opening Keynote', type:'keynote', people:['evan','jacob','giff']},
+      {start:'2026-08-18T09:45:00-06:00', end:'2026-08-18T10:00:00-06:00', title:'Break', type:'break', people:['evan','jacob','giff']},
       {group:'d2-10', items:[
         {start:'2026-08-18T10:00:00-06:00', end:'2026-08-18T11:30:00-06:00', title:'Integration Diagnostics: AI-Assisted Integration Diagnostics in Acumatica', type:'workshop', people:['evan','jacob']},
         {start:'2026-08-18T10:00:00-06:00', end:'2026-08-18T17:30:00-06:00', title:'Acumatica ERP AI: From Predefined Use Cases to Automation Design', type:'workshop', newAdd:true, people:['evan','jacob']},
+        {start:'2026-08-18T10:00:00-06:00', end:'2026-08-18T11:30:00-06:00', title:"Acumatica's Modern UI: Building Custom Controls with AI", type:'workshop', people:['giff']},
       ]},
-      {start:'2026-08-18T11:30:00-06:00', end:'2026-08-18T12:30:00-06:00', title:'Lunch', type:'meal', people:['evan','jacob']},
+      {start:'2026-08-18T11:30:00-06:00', end:'2026-08-18T12:30:00-06:00', title:'Lunch', type:'meal', people:['evan','jacob','giff']},
       {group:'d2-1230', items:[
-        {start:'2026-08-18T12:30:00-06:00', end:'2026-08-18T14:00:00-06:00', title:'Customizations: AI-Assisted Diagnostics and Testing for Acumatica Customizations', type:'workshop', people:['evan']},
+        {start:'2026-08-18T12:30:00-06:00', end:'2026-08-18T14:00:00-06:00', title:'Customizations: AI-Assisted Diagnostics and Testing for Acumatica Customizations', type:'workshop', people:['evan','giff']},
         {start:'2026-08-18T12:30:00-06:00', end:'2026-08-18T14:00:00-06:00', title:'AI in ERP: Is Your Practice AI Ready?', type:'session', people:['jacob']},
       ]},
-      {start:'2026-08-18T14:00:00-06:00', end:'2026-08-18T14:30:00-06:00', title:'Break', type:'break', people:['evan','jacob']},
+      {start:'2026-08-18T14:00:00-06:00', end:'2026-08-18T14:30:00-06:00', title:'Break', type:'break', people:['evan','jacob','giff']},
       {group:'d2-1430', items:[
         {start:'2026-08-18T14:30:00-06:00', end:'2026-08-18T16:00:00-06:00', title:'Acumatica Support: How to Achieve Faster, Effective Resolutions', type:'session', people:['evan']},
-        {start:'2026-08-18T14:30:00-06:00', end:'2026-08-18T17:30:00-06:00', title:"Acumatica's Modern UI: Migration and Version Upgrade for Advanced Customizations", type:'workshop', people:['evan','jacob']},
+        {start:'2026-08-18T14:30:00-06:00', end:'2026-08-18T17:30:00-06:00', title:"Acumatica's Modern UI: Migration and Version Upgrade for Advanced Customizations", type:'workshop', people:['evan','jacob','giff']},
       ]},
       {group:'d2-1600', items:[
         {start:'2026-08-18T16:00:00-06:00', end:'2026-08-18T17:30:00-06:00', title:'ERP Performance: Monitoring, Tuning, and Preventing Slowdowns', type:'session', people:['evan','jacob']},
-        {start:'2026-08-18T16:00:00-06:00', end:'2026-08-18T17:30:00-06:00', title:'AI in ERP: Is Your Practice AI Ready?', type:'session', newAdd:true, people:['jacob']},
+        {start:'2026-08-18T16:00:00-06:00', end:'2026-08-18T17:30:00-06:00', title:'AI in ERP: Is Your Practice AI Ready?', type:'session', newAdd:true, people:['jacob','giff']},
       ]},
     ]
   },
   {
     id:'day3', num:'03', title:'Wednesday, August 19', sub:'Upgrades, Custom UI & Sales',
     sessions:[
-      {start:'2026-08-19T07:30:00-06:00', end:'2026-08-19T08:30:00-06:00', title:'Breakfast', type:'meal', people:['evan','jacob']},
+      {start:'2026-08-19T07:30:00-06:00', end:'2026-08-19T08:30:00-06:00', title:'Breakfast', type:'meal', people:['evan','jacob','giff']},
       {group:'d3-0830', items:[
         {start:'2026-08-19T08:30:00-06:00', end:'2026-08-19T09:45:00-06:00', title:'Upgrade Management: Mastering the Process for Successful Upgrades', type:'session', people:['evan']},
-        {start:'2026-08-19T08:30:00-06:00', end:'2026-08-19T17:30:00-06:00', title:'Acumatica ERP AI: From Predefined Use Cases to Automation Design', type:'workshop', people:['jacob']},
+        {start:'2026-08-19T08:30:00-06:00', end:'2026-08-19T17:30:00-06:00', title:'Acumatica ERP AI: From Predefined Use Cases to Automation Design', type:'workshop', people:['jacob','giff']},
       ]},
-      {start:'2026-08-19T09:45:00-06:00', end:'2026-08-19T10:00:00-06:00', title:'Break', type:'break', people:['evan','jacob']},
+      {start:'2026-08-19T09:45:00-06:00', end:'2026-08-19T10:00:00-06:00', title:'Break', type:'break', people:['evan','jacob','giff']},
       {group:'d3-10', items:[
         {start:'2026-08-19T10:00:00-06:00', end:'2026-08-19T11:30:00-06:00', title:"Acumatica's Modern UI: Building Custom Controls with AI", type:'workshop', newAdd:true, people:['evan','jacob']},
         {start:'2026-08-19T10:00:00-06:00', end:'2026-08-19T11:30:00-06:00', title:'Acumatica 2026 R2: Technical Overview', type:'workshop', people:['evan','jacob']},
       ]},
-      {start:'2026-08-19T11:30:00-06:00', end:'2026-08-19T12:30:00-06:00', title:'Lunch', type:'meal', people:['evan','jacob']},
+      {start:'2026-08-19T11:30:00-06:00', end:'2026-08-19T12:30:00-06:00', title:'Lunch', type:'meal', people:['evan','jacob','giff']},
       {group:'d3-1230', items:[
-        {start:'2026-08-19T12:30:00-06:00', end:'2026-08-19T16:00:00-06:00', title:'Custom UI in Acumatica: Beyond Personalization', type:'workshop', people:['evan']},
+        {start:'2026-08-19T12:30:00-06:00', end:'2026-08-19T16:00:00-06:00', title:'Custom UI in Acumatica: Beyond Personalization', type:'workshop', people:['evan','giff']},
         {start:'2026-08-19T12:30:00-06:00', end:'2026-08-19T14:00:00-06:00', title:'Field Service: Positioning the Solution and Qualifying Opportunities', type:'session', people:['jacob']},
       ]},
-      {start:'2026-08-19T14:00:00-06:00', end:'2026-08-19T14:30:00-06:00', title:'Break', type:'break', people:['evan','jacob']},
+      {start:'2026-08-19T14:00:00-06:00', end:'2026-08-19T14:30:00-06:00', title:'Break', type:'break', people:['evan','jacob','giff']},
       {group:'d3-1430', items:[
-        {start:'2026-08-19T14:30:00-06:00', end:'2026-08-19T17:30:00-06:00', title:'Acumatica Customization Platform: Core Concepts to Get Started', type:'workshop', people:['evan']},
+        {start:'2026-08-19T14:30:00-06:00', end:'2026-08-19T17:30:00-06:00', title:'Acumatica Customization Platform: Core Concepts to Get Started', type:'workshop', people:['evan','giff']},
         {start:'2026-08-19T14:30:00-06:00', end:'2026-08-19T16:00:00-06:00', title:'Sales and Delivery Lifecycle: The Role of the Solution Architect', type:'session', people:['jacob']},
       ]},
       {group:'d3-1600', items:[
-        {start:'2026-08-19T16:00:00-06:00', end:'2026-08-19T17:30:00-06:00', title:'Distribution Edition: Advancing Your Knowledge', type:'session', people:['evan']},
+        {start:'2026-08-19T16:00:00-06:00', end:'2026-08-19T17:30:00-06:00', title:'Distribution Edition: Advancing Your Knowledge', type:'session', people:['evan','giff']},
         {start:'2026-08-19T16:00:00-06:00', end:'2026-08-19T17:30:00-06:00', title:"Best Practices: 'Why I Win'—Sharing What Drives Success", type:'workshop', people:['jacob']},
       ]},
-      {start:'2026-08-19T17:30:00-06:00', end:'2026-08-19T19:30:00-06:00', title:'Evening Reception', type:'reception', people:['evan','jacob']},
+      {start:'2026-08-19T17:30:00-06:00', end:'2026-08-19T19:30:00-06:00', title:'Evening Reception', type:'reception', people:['evan','jacob','giff']},
     ]
   },
   {
     id:'day4', num:'04', title:'Thursday, August 20', sub:'Discovery, Migration & Closing',
     sessions:[
-      {start:'2026-08-20T07:30:00-06:00', end:'2026-08-20T08:30:00-06:00', title:'Breakfast', type:'meal', people:['evan','jacob']},
+      {start:'2026-08-20T07:30:00-06:00', end:'2026-08-20T08:30:00-06:00', title:'Breakfast', type:'meal', people:['evan','jacob','giff']},
       {group:'d4-0830', items:[
         {start:'2026-08-20T08:30:00-06:00', end:'2026-08-20T09:45:00-06:00', title:"Discovery: Capturing Requirements That Don't Collapse Under Real-World Use", type:'session', people:['evan']},
-        {start:'2026-08-20T08:30:00-06:00', end:'2026-08-20T11:00:00-06:00', title:'Custom UI in Acumatica: Beyond Personalization', type:'workshop', newAdd:true, people:['evan']},
+        {start:'2026-08-20T08:30:00-06:00', end:'2026-08-20T11:00:00-06:00', title:'Custom UI in Acumatica: Beyond Personalization', type:'workshop', newAdd:true, people:['evan','giff']},
         {start:'2026-08-20T08:30:00-06:00', end:'2026-08-20T11:00:00-06:00', title:'Acumatica Customization Platform: Core Concepts to Get Started', type:'workshop', newAdd:true, people:['evan']},
-        {start:'2026-08-20T08:30:00-06:00', end:'2026-08-20T09:45:00-06:00', title:'Data Migration: Frameworks, Tools, and Best Practices', type:'session', people:['jacob']},
+        {start:'2026-08-20T08:30:00-06:00', end:'2026-08-20T09:45:00-06:00', title:'Data Migration: Frameworks, Tools, and Best Practices', type:'session', people:['jacob','giff']},
       ]},
-      {start:'2026-08-20T09:45:00-06:00', end:'2026-08-20T10:00:00-06:00', title:'Break', type:'break', people:['evan','jacob']},
+      {start:'2026-08-20T09:45:00-06:00', end:'2026-08-20T10:00:00-06:00', title:'Break', type:'break', people:['evan','jacob','giff']},
       {group:'d4-1000', items:[
         {start:'2026-08-20T10:00:00-06:00', end:'2026-08-20T11:00:00-06:00', title:'Custom Demos: How to Use the SalesDemo Database', type:'session', people:['evan']},
         {start:'2026-08-20T10:00:00-06:00', end:'2026-08-20T11:00:00-06:00', title:'Organizational Buy-In: Positioning Acumatica for the IT Stakeholder', type:'session', people:['jacob']},
+        {start:'2026-08-20T10:00:00-06:00', end:'2026-08-20T11:00:00-06:00', title:'Building an ERP Practice: From High-Pressure Projects to Predictable Pipeline', type:'session', people:['giff']},
       ]},
-      {start:'2026-08-20T11:00:00-06:00', end:'2026-08-20T11:15:00-06:00', title:'Break', type:'break', people:['evan','jacob']},
-      {start:'2026-08-20T11:15:00-06:00', end:'2026-08-20T12:15:00-06:00', title:'Closing Keynote', type:'keynote', people:['evan','jacob']},
+      {start:'2026-08-20T11:00:00-06:00', end:'2026-08-20T11:15:00-06:00', title:'Break', type:'break', people:['evan','jacob','giff']},
+      {start:'2026-08-20T11:15:00-06:00', end:'2026-08-20T12:15:00-06:00', title:'Closing Keynote', type:'keynote', people:['evan','jacob','giff']},
     ]
   },
 ];
 
 const WAITLIST = [
   {start:'2026-08-18T10:00:00-06:00', end:'2026-08-18T11:30:00-06:00', title:"Acumatica's Modern UI: Building Custom Controls with AI", type:'workshop', people:['evan']},
+  {start:'2026-08-19T10:00:00-06:00', end:'2026-08-19T11:30:00-06:00', title:'Acumatica 2026 R2: Technical Overview', type:'workshop', people:['giff']},
 ];
 
 const PEOPLE = {
   evan:{label:'Evan'},
   jacob:{label:'Jacob'},
+  giff:{label:'Giff'},
 };
 
 const TYPE_META = {
@@ -584,9 +592,10 @@ function renderDay(day){
 function renderWaitlist(){
   const cards = WAITLIST.map(item => {
     const s = new Date(item.start), e = new Date(item.end);
+    const dateLabel = s.toLocaleDateString('en-US', {weekday:'short', month:'short', day:'numeric', timeZone:'America/Denver'});
     return `<div class="slot" style="--dot:var(--c-waitlist)">
       <div class="card waitlist-card" style="--accent:var(--c-waitlist)">
-        <div class="time mono">${fmtRange(s,e)} · Tue, Aug 18</div>
+        <div class="time mono">${fmtRange(s,e)} · ${dateLabel}</div>
         <h3>${item.title}</h3>
         <div class="card-foot">
           <span class="tag" style="--accent:var(--c-waitlist)">Waitlisted</span>
