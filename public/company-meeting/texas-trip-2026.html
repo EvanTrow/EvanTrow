@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="light" />
+		<meta name="description" content="Crestwood Company Meeting itinerary · October 15–17, 2026." />
+		<title>Crestwood Company Meeting · October 15–17, 2026</title>
+		<style>
+			:root {
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+				color: #16202e;
+				background: #f4f6f8;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				margin: 0;
+				line-height: 1.5;
+				font-size: 17px;
+			}
+			a {
+				color: #075ca8;
+				text-underline-offset: 0.15em;
+				overflow-wrap: anywhere;
+			}
+			a:focus-visible {
+				outline: 3px solid #e5a33d;
+				outline-offset: 3px;
+			}
+			.wrap {
+				width: min(100% - 28px, 780px);
+				margin: 0 auto;
+			}
+			.hero {
+				background: #183147;
+				color: white;
+				padding: 30px 0 25px;
+			}
+			.hero h1 {
+				font-size: clamp(2rem, 7vw, 3rem);
+				line-height: 1.1;
+				margin: 2px 0 8px;
+				letter-spacing: -0.035em;
+			}
+			.hero p {
+				margin: 0;
+				color: #d9e4ec;
+			}
+			.eyebrow {
+				text-transform: uppercase;
+				letter-spacing: 0.12em;
+				font-size: 0.76rem;
+				font-weight: 800;
+				color: #89d8cd;
+			}
+			.hero .eyebrow {
+				margin-bottom: 7px;
+			}
+			.nav {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				margin-top: 20px;
+			}
+			.nav a {
+				color: white;
+				text-decoration: none;
+				border: 1px solid #7891a4;
+				border-radius: 999px;
+				padding: 7px 13px;
+				font-size: 0.9rem;
+				font-weight: 650;
+			}
+			.nav a:hover {
+				background: #2b4b61;
+			}
+			main {
+				padding: 20px 0 45px;
+			}
+			section {
+				scroll-margin-top: 14px;
+			}
+			.card {
+				background: #fff;
+				border: 1px solid #dce3e8;
+				border-radius: 16px;
+				padding: 21px;
+				margin-bottom: 15px;
+				box-shadow: 0 3px 12px rgb(20 40 60 / 5%);
+			}
+			.feature {
+				border-left: 6px solid #bd7134;
+				background: #fffaf4;
+			}
+			.feature .eyebrow {
+				color: #8f4f19;
+			}
+			h2,
+			h3,
+			h4 {
+				line-height: 1.2;
+				color: #183147;
+			}
+			h2 {
+				font-size: 1.45rem;
+				margin: 0 0 14px;
+			}
+			h3 {
+				font-size: 1.12rem;
+				margin: 0 0 5px;
+			}
+			h4 {
+				font-size: 1rem;
+				margin: 18px 0 6px;
+			}
+			p {
+				margin: 7px 0 0;
+			}
+			.feature h2 {
+				margin: 5px 0 8px;
+				font-size: 1.65rem;
+			}
+			.muted {
+				color: #526273;
+			}
+			.small {
+				font-size: 0.88rem;
+			}
+			.note {
+				background: #edf5f8;
+				border-radius: 11px;
+				padding: 11px 13px;
+				margin-top: 15px;
+			}
+			.grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 12px;
+				margin-bottom: 15px;
+			}
+			.grid .card {
+				margin-bottom: 0;
+			}
+			.grid h2 {
+				font-size: 1.12rem;
+				margin-bottom: 8px;
+			}
+			.big {
+				font-size: 1.24rem;
+				font-weight: 800;
+				line-height: 1.25;
+				color: #183147;
+			}
+			.meta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				margin: 11px 0;
+			}
+			.tag {
+				background: #e8eff3;
+				border-radius: 7px;
+				padding: 4px 8px;
+				color: #29465b;
+				font-size: 0.82rem;
+				font-weight: 700;
+			}
+			.button {
+				display: inline-block;
+				padding: 10px 14px;
+				border-radius: 9px;
+				background: #0861a9;
+				color: white;
+				font-weight: 700;
+				text-decoration: none;
+				margin: 9px 9px 0 0;
+			}
+			.button:hover {
+				background: #004a88;
+			}
+			.button.alt {
+				background: #e7f0f7;
+				color: #064f8e;
+			}
+			.day {
+				margin-top: 27px;
+			}
+			.day > h2 {
+				font-size: 1.8rem;
+				margin: 0 0 4px;
+			}
+			.day > p {
+				margin: 0 0 13px;
+			}
+			.timeline {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			.timeline li {
+				display: grid;
+				grid-template-columns: 132px minmax(0, 1fr);
+				gap: 14px;
+				padding: 15px 0;
+				border-top: 1px solid #e3e9ed;
+			}
+			.timeline li:first-child {
+				border-top: 0;
+				padding-top: 0;
+			}
+			.time {
+				color: #7a461d;
+				font-weight: 800;
+				font-variant-numeric: tabular-nums;
+			}
+			.timeline p {
+				margin-top: 3px;
+			}
+			.agenda {
+				list-style: none;
+				padding: 0;
+				margin: 11px 0 0;
+				border-top: 1px solid #e2e9ed;
+			}
+			.agenda li {
+				display: grid;
+				grid-template-columns: 135px minmax(0, 1fr);
+				gap: 12px;
+				padding: 9px 0;
+				border-bottom: 1px solid #e2e9ed;
+			}
+			.agenda time {
+				color: #344e62;
+				font-weight: 750;
+				font-variant-numeric: tabular-nums;
+			}
+			.facts {
+				display: grid;
+				grid-template-columns: 125px minmax(0, 1fr);
+				gap: 7px 12px;
+				margin: 12px 0 0;
+			}
+			.facts dt {
+				color: #526273;
+				font-weight: 650;
+			}
+			.facts dd {
+				margin: 0;
+			}
+			ul.plain {
+				padding-left: 21px;
+				margin: 10px 0 0;
+			}
+			ul.plain li {
+				margin: 6px 0;
+			}
+			footer {
+				color: #5f6c78;
+				font-size: 0.84rem;
+				padding: 4px 0 32px;
+			}
+			@media (max-width: 620px) {
+				body {
+					font-size: 16.5px;
+				}
+				.wrap {
+					width: min(100% - 22px, 780px);
+				}
+				.hero {
+					padding: 24px 0 20px;
+				}
+				.card {
+					padding: 18px;
+					border-radius: 13px;
+				}
+				.grid {
+					grid-template-columns: 1fr;
+					gap: 10px;
+				}
+				.timeline li {
+					grid-template-columns: 1fr;
+					gap: 3px;
+					padding: 13px 0;
+				}
+				.agenda li {
+					grid-template-columns: 100px minmax(0, 1fr);
+					gap: 9px;
+					font-size: 0.93rem;
+				}
+				.facts {
+					grid-template-columns: 105px minmax(0, 1fr);
+				}
+			}
+			@media print {
+				:root {
+					background: white;
+				}
+				.hero {
+					color: #16202e;
+					background: white;
+					padding: 0 0 12px;
+				}
+				.hero p,
+				.eyebrow {
+					color: #16202e !important;
+				}
+				.nav {
+					display: none;
+				}
+				.card {
+					box-shadow: none;
+					break-inside: avoid;
+				}
+				a {
+					color: #16202e;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header class="hero">
+			<div class="wrap">
+				<div class="eyebrow">Evan Trowbridge · Private itinerary</div>
+				<h1>Crestwood Company Meeting</h1>
+				<p>October 15–17, 2026 · Grapevine, Texas</p>
+				<nav class="nav" aria-label="Jump to a day">
+					<a href="#thursday">Thursday</a><a href="#friday">Friday</a><a href="#saturday">Saturday</a><a href="#reference">Details &amp; links</a>
+				</nav>
+			</div>
+		</header>
+		<main class="wrap">
+			<section class="card feature" aria-labelledby="next-heading">
+				<div class="eyebrow">First step · Thursday, October 15 · Eastern Time</div>
+				<h2 id="next-heading">Leave home by 8:05 AM</h2>
+				<p>
+					Drive from home to BWI <strong>Daily Garage, 7000 Elm Rd, Baltimore, MD 21240</strong>. Allow 1 hour 45 minutes for travel plus an extra 10 minutes; target the garage at
+					<strong>10:00 AM</strong> and the terminal by <strong>10:25 AM</strong>.
+				</p>
+				<p class="small muted">
+					These are planning targets. The 10:25 AM terminal arrival is 90 minutes before the 11:55 AM departure. Check live traffic, Daily Garage availability, and flight status before
+					leaving.
+				</p>
+				<a class="button" href="https://www.google.com/maps/dir/?api=1&amp;destination=7000%20Elm%20Rd%2C%20Baltimore%2C%20MD%2021240&amp;travelmode=driving">Directions to Daily Garage</a>
+				<a class="button alt" href="https://bwiairport.com/to-from-bwi/parking/">BWI parking status</a>
+			</section>
+
+			<div class="grid" aria-label="Trip at a glance">
+				<section class="card">
+					<h2>Outbound flight</h2>
+					<div class="big">AA 2314 · Thu, Oct 15</div>
+					<p><strong>BWI 11:55 AM ET → DFW 2:25 PM CT</strong></p>
+					<div class="meta"><span class="tag">Seat 13A</span><span class="tag">Nonstop</span></div>
+				</section>
+				<section class="card">
+					<h2>Return flight</h2>
+					<div class="big">AA 2669 · Sat, Oct 17</div>
+					<p><strong>DFW 11:03 AM CT → BWI 3:06 PM ET</strong></p>
+					<div class="meta"><span class="tag">Seat 12A</span><span class="tag">Nonstop</span></div>
+				</section>
+				<section class="card">
+					<h2>Hotel · Oct 15–17</h2>
+					<div class="big">Gaylord Texan</div>
+					<p>1501 Gaylord Trail<br />Grapevine, TX 76051</p>
+					<p class="small">Check-in begins 4:00 PM CT. Check out Saturday morning before your ride.</p>
+					<a href="https://www.google.com/maps/search/?api=1&amp;query=Gaylord%20Texan%20Resort%20and%20Convention%20Center%2C%201501%20Gaylord%20Trail%2C%20Grapevine%2C%20TX%2076051"
+						>Open hotel map</a
+					>
+				</section>
+				<section class="card">
+					<h2>DFW arrival ride</h2>
+					<div class="big">Evan Templin<br />Madison Brewer</div>
+					<p>Share a rideshare from DFW to the Gaylord Texan after Thursday’s arrival. Coordinate pickup once everyone is ready.</p>
+					<p class="small muted">Saturday’s hotel-to-DFW ride is separate.</p>
+				</section>
+			</div>
+
+			<section class="day" id="thursday" aria-labelledby="thursday-heading">
+				<h2 id="thursday-heading">Thursday · Travel &amp; welcome</h2>
+				<p class="muted">October 15 · Times show the local time zone</p>
+				<div class="card">
+					<ol class="timeline">
+						<li>
+							<div class="time">8:05 AM ET</div>
+							<div>
+								<h3>Leave home</h3>
+								<p>Plan for 1 hour 45 minutes on the road plus a 10-minute travel cushion. Check traffic before departing.</p>
+							</div>
+						</li>
+						<li>
+							<div class="time">10:00 AM ET</div>
+							<div>
+								<h3>Arrive at BWI Daily Garage</h3>
+								<p>
+									7000 Elm Rd, Baltimore, MD 21240. Covered parking is <strong>$16 per day</strong>. Free shuttles operate 24/7, scheduled about every 10–15 minutes; delays are
+									possible. Photograph your numbered parking space and keep your parking ticket.
+								</p>
+							</div>
+						</li>
+						<li>
+							<div class="time">10:25 AM ET</div>
+							<div>
+								<h3>Arrive at the terminal</h3>
+								<p>
+									American Airlines uses BWI Concourse C. Check your boarding pass for the current gate and security entrance. This is 90 minutes before departure; American’s general
+									domestic guidance is two hours.
+								</p>
+							</div>
+						</li>
+						<li>
+							<div class="time">11:55 AM ET</div>
+							<div>
+								<h3>Fly BWI → DFW</h3>
+								<p>American AA 2314 · seat 13A. Scheduled arrival: <strong>2:25 PM CT</strong>.</p>
+							</div>
+						</li>
+						<li>
+							<div class="time">After 2:25 PM CT</div>
+							<div>
+								<h3>Ride to the hotel</h3>
+								<p>
+									Meet Evan Templin and Madison Brewer after arrival, then share an Uber/Lyft or other rideshare to Gaylord Texan. Follow the rideshare app’s pickup directions for
+									your DFW terminal. The hotel has no airport shuttle.
+								</p>
+							</div>
+						</li>
+						<li>
+							<div class="time">4:00 PM CT</div>
+							<div>
+								<h3>Hotel check-in begins</h3>
+								<p>If you arrive earlier, ask the front desk about room readiness or luggage storage.</p>
+							</div>
+						</li>
+						<li>
+							<div class="time">6:00–8:00 PM CT</div>
+							<div>
+								<h3>Welcome reception</h3>
+								<p>Mission Plaza, inside the Gaylord. Western-themed happy hour with drinks, finger foods, and games; Texas attire and cowboy hats are welcome.</p>
+							</div>
+						</li>
+					</ol>
+				</div>
+			</section>
+
+			<section class="day" id="friday" aria-labelledby="friday-heading">
+				<h2 id="friday-heading">Friday · Company meeting</h2>
+				<p class="muted">October 16 · All times Central</p>
+				<div class="card">
+					<h3>Breakfast &amp; group photos</h3>
+					<p>
+						<strong>7:45–8:30 AM · Texoma 3.</strong> The calendar gathering begins at 7:45; breakfast is announced for 8:00. Bring your laptop, charger, and a light layer. Leave your
+						cowboy hat in the room during meeting sessions.
+					</p>
+					<h4>Meeting · 8:30 AM–5:00 PM · Texoma 1–2</h4>
+					<ol class="agenda">
+						<li><time>8:30–8:45 AM</time><span>Welcome and plan for the day</span></li>
+						<li><time>8:45–9:45 AM</time><span>Crestwood future state</span></li>
+						<li><time>9:45–10:00 AM</time><span>Coffee break</span></li>
+						<li><time>10:00–11:30 AM</time><span>AI skills builder</span></li>
+						<li><time>11:30 AM–12:30 PM</time><span>AI skills small-group breakouts</span></li>
+						<li><time>12:30–1:30 PM</time><span>Lunch and networking · Texoma 3</span></li>
+						<li><time>1:30–3:00 PM</time><span>Large-group team activity</span></li>
+						<li><time>3:00–3:15 PM</time><span>Snack break</span></li>
+						<li><time>3:15–4:45 PM</time><span>Department breakouts</span></li>
+						<li><time>4:45–5:00 PM</time><span>Closing remarks</span></li>
+					</ol>
+					<div class="note"><strong>7:00 PM CT · Awards dinner · Texoma 3.</strong> Western attire and your cowboy hat are welcome again.</div>
+				</div>
+			</section>
+
+			<section class="day" id="saturday" aria-labelledby="saturday-heading">
+				<h2 id="saturday-heading">Saturday · Fly home</h2>
+				<p class="muted">October 17 · Texas times Central; BWI arrival Eastern</p>
+				<div class="card">
+					<ol class="timeline">
+						<li>
+							<div class="time">7:00 AM CT</div>
+							<div>
+								<h3>Breakfast</h3>
+								<p>Breakfast begins in the <strong>San Saba Room</strong>, per the latest travel team email.</p>
+							</div>
+						</li>
+						<li>
+							<div class="time">By 8:00 AM CT</div>
+							<div>
+								<h3>Finish breakfast and check out</h3>
+								<p>Request a separate rideshare by about 8:00 AM. Confirm the current DFW terminal and flight status in the American Airlines app.</p>
+							</div>
+						</li>
+						<li>
+							<div class="time">By 8:15 AM CT</div>
+							<div>
+								<h3>Leave Gaylord Texan for DFW</h3>
+								<p>Target the airport by about <strong>8:45–9:00 AM CT</strong>. The ride is short, but this plan allows time for pickup, airport roads, check-in, and security.</p>
+							</div>
+						</li>
+						<li>
+							<div class="time">11:03 AM CT</div>
+							<div>
+								<h3>Fly DFW → BWI</h3>
+								<p>American AA 2669 · seat 12A. Scheduled arrival: <strong>3:06 PM ET</strong>.</p>
+							</div>
+						</li>
+						<li>
+							<div class="time">After 3:06 PM ET</div>
+							<div>
+								<h3>Collect your car and drive home</h3>
+								<p>Follow signs to the lower-level Daily Parking shuttle stop at BWI. Allow for the shuttle, garage exit, and live traffic on the drive to Lancaster.</p>
+							</div>
+						</li>
+					</ol>
+				</div>
+			</section>
+
+			<section class="day" id="reference" aria-labelledby="reference-heading">
+				<h2 id="reference-heading">Details &amp; useful links</h2>
+				<div class="card">
+					<dl class="facts">
+						<dt>Airline</dt>
+						<dd>American Airlines</dd>
+						<dt>Hotel</dt>
+						<dd>Gaylord Texan Resort &amp; Convention Center · <a href="tel:+18177781000">817-778-1000</a></dd>
+						<dt>Hotel dates</dt>
+						<dd>Check in Oct 15 · check out Oct 17. No separate hotel booking number appeared in the trip messages.</dd>
+						<dt>Hotel contact</dt>
+						<dd>Jamie Loewer, Crestwood Travel Team · <a href="mailto:jamie.loewer@liaisonscorp.com">jamie.loewer@liaisonscorp.com</a></dd>
+					</dl>
+					<h3 style="margin-top: 22px">Open before you travel</h3>
+					<ul class="plain">
+						<li>
+							<a href="https://www.aa.com/reservation/flightCheckInViewReservationsAccess.do?v_locale=en_US&amp;v_mobileUAFlag=AA">American Airlines check-in</a> — online check-in
+							generally opens 24 hours before departure.
+						</li>
+						<li>
+							<a href="https://bwiairport.com/to-from-bwi/parking/daily-garage/">BWI Daily Garage directions and rate</a> ·
+							<a href="https://bwiairport.com/to-from-bwi/parking/">live parking availability</a>
+						</li>
+						<li>
+							<a href="https://www.aa.com/web/i18n/travel-info/check-in-and-arrival.html">American check-in and arrival guidance</a> ·
+							<a href="https://www.dfwairport.com/summer/">DFW arrival guidance</a>
+						</li>
+						<li>
+							<a href="https://www.marriott.com/en-us/hotels/dalgt-gaylord-texan-resort-and-convention-center/overview/">Hotel information</a> ·
+							<a href="https://updates.gaylordhotels.com/GHResortApp">Gaylord Hotels app</a> for meeting-room navigation
+						</li>
+					</ul>
+					<div class="note small">
+						<strong>Before each drive:</strong> check traffic, parking availability, airline status, and your gate. Parking availability, pickup points, and airport traffic can change. All
+						drive and transfer times on this page are estimates.
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="wrap">Prepared October 14, 2026 from the trip’s Outlook confirmations and calendar events, plus official airport, airline, and hotel information. For private use.</footer>
+	</body>
+</html>
